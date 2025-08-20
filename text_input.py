@@ -1,7 +1,7 @@
 import re
 from telegram import Update
 from telegram.ext import ContextTypes
-from yandex_parser import parse_yandex
+from excel_updater import update_excel_with_yandex_data
 
 YANDEX_URL_PATTERN = re.compile(r"(https?://yandex\.ru/maps/org/[^\s]+)")
 
@@ -14,8 +14,10 @@ async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text(f"Загружаю данные с {url}...")
 
         try:
-            info = parse_yandex(url)
-            # Формируем красивый ответ
+            # Парсим данные и обновляем Excel
+            info = update_excel_with_yandex_data(url)
+
+            # Формируем красивый ответ пользователю
             hours_text = "\n".join(f"  {day}: {hours}" for day, hours in info.get("hours", {}).items())
             response = (
                 f"Название: {info.get('title')}\n"
@@ -25,7 +27,10 @@ async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 f"Часы работы:\n{hours_text or '—'}"
             )
             await update.message.reply_text(response)
+
+            # Логирование: сообщаем о записи в Excel
+            await update.message.reply_text("✅ Данные успешно записаны в таблицу places.xlsx")
         except Exception as e:
-            await update.message.reply_text(f"Ошибка при парсинге: {e}")
+            await update.message.reply_text(f"Ошибка при обработке: {e}")
     else:
         await update.message.reply_text("Отправь ссылку на организацию в Яндекс.Картах 📍")
