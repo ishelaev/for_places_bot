@@ -23,7 +23,6 @@ def get_yandex_place_info(url):
         "rating": "Рейтинг не найден",
         "address": "Адрес не найден",
         "phone": "Телефон не найден",
-        "instagram": "Instagram не найден"
     }
 
     try:
@@ -43,11 +42,6 @@ def get_yandex_place_info(url):
 
     try:
         info["phone"] = driver.find_element(By.XPATH, "//a[contains(@href,'tel:')]").text
-    except:
-        pass
-
-    try:
-        info["instagram"] = driver.find_element(By.XPATH, "//a[contains(@href,'instagram.com')]").get_attribute("href")
     except:
         pass
 
@@ -77,7 +71,6 @@ async def handle_link(update: Update, context: ContextTypes.DEFAULT_TYPE):
         f"Рейтинг: {info['rating']}\n"
         f"Адрес: {info['address']}\n"
         f"Телефон: {info['phone']}\n"
-        f"Instagram: {info['instagram']}"
     )
     await update.message.reply_text(reply_text)
 
