@@ -22,7 +22,6 @@ def get_yandex_place_info(url):
         "title": "Название не найдено",
         "rating": "Рейтинг не найден",
         "address": "Адрес не найден",
-        "phone": "Телефон не найден",
     }
 
     try:
@@ -37,11 +36,6 @@ def get_yandex_place_info(url):
 
     try:
         info["address"] = driver.find_element(By.XPATH, "//div[contains(@class,'business-contacts-view__address')]").text
-    except:
-        pass
-
-    try:
-        info["phone"] = driver.find_element(By.XPATH, "//a[contains(@href,'tel:')]").text
     except:
         pass
 
@@ -70,8 +64,7 @@ async def handle_link(update: Update, context: ContextTypes.DEFAULT_TYPE):
         f"Название: {info['title']}\n"
         f"Рейтинг: {info['rating']}\n"
         f"Адрес: {info['address']}\n"
-        f"Телефон: {info['phone']}\n"
-    )
+        )
     await update.message.reply_text(reply_text)
 
 # --------- Запуск бота ---------
