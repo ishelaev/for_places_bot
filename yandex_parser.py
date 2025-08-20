@@ -35,7 +35,6 @@ def parse_yandex(url: str) -> dict:
 
     # Получаем страницу для BeautifulSoup
     soup = BeautifulSoup(driver.page_source, "html.parser")
-    driver.quit()
 
     # ===== Рейтинг =====
     rating = None
@@ -51,14 +50,36 @@ def parse_yandex(url: str) -> dict:
         if reviews:
             reviews = f"{reviews} отзывов"
 
-    # ===== Координаты =====
-    coordinates = None
-    coords_tag = soup.select_one("div.search-placemark-view")
-    if coords_tag:
-        coords = coords_tag.get("data-coordinates")
-        if coords:
-            lon, lat = coords.split(",")
-            coordinates = f"{lat.strip()}, {lon.strip()}"
+    # ===== Координаты (lon,lat → lat,lon float) =====
+    latitude = longitude = None
+    el = soup.select_one('[data-coordinates]')
+    if el and el.get('data-coordinates'):
+        try:
+            lon_str, lat_str = el['data-coordinates'].split(',', 1)
+            longitude = float(lon_str.strip())
+            latitude = float(lat_str.strip())
+        except Exception:
+            pass
+
+    # fallback через regex на странице
+    if latitude is None or longitude is None:
+        m = re.search(r'data-coordinates="([\-0-9\.]+),([\-0-9\.]+)"', driver.page_source)
+        if m:
+            try:
+                longitude = float(m.group(1))
+                latitude = float(m.group(2))
+            except Exception:
+                pass
+
+    # fallback через URL
+    if latitude is None or longitude is None:
+        m = re.search(r'[?&]ll=([\-0-9\.]+),([\-0-9\.]+)', driver.current_url)
+        if m:
+            try:
+                longitude = float(m.group(1))
+                latitude = float(m.group(2))
+            except Exception:
+                pass
 
     # ===== Часы работы =====
     hours = {}
@@ -73,10 +94,21 @@ def parse_yandex(url: str) -> dict:
             ru_day = day_map.get(eng_day, eng_day)
             hours[ru_day] = time_range
 
+    # ===== Категории =====
+    categories = None
+    categories_tags = soup.select("a.orgpage-categories-info-view__link span.button__text")
+    if categories_tags:
+        parts = [tag.get_text(strip=True) for tag in categories_tags if tag.get_text(strip=True)]
+        if parts:
+            categories = ", ".join(parts)
+
+    driver.quit()
+
     return {
         "title": title or "Название не найдено",
         "rating": rating or "Рейтинг не найден",
         "reviews": reviews or "Отзывы не найдены",
-        "coordinates": coordinates or "Координаты не найдены",
-        "hours": hours
+        "coordinates": (latitude, longitude) if latitude is not None and longitude is not None else None,
+        "hours": hours,
+        "categories": categories
     }
