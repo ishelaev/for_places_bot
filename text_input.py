@@ -3,12 +3,19 @@ from telegram import Update
 from telegram.ext import ContextTypes
 from excel_updater import update_excel_with_yandex_data
 
-YANDEX_URL_PATTERN = re.compile(r"(https?://yandex\.ru/maps/org/[^\s]+)")
+YANDEX_URL_PATTERN = re.compile(r"(https?://yandex\.(?:ru|com)/maps/org/[^\s]+)")
 
 async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
-
+    
+    # Отладочная информация
+    print(f"Получено сообщение: '{text}'")
+    print(f"Длина сообщения: {len(text)}")
+    
     match = YANDEX_URL_PATTERN.search(text)
+    print(f"Результат поиска ссылки: {match}")
+    print(f"Регулярное выражение: {YANDEX_URL_PATTERN.pattern}")
+    
     if match:
         url = match.group(1)
         await update.message.reply_text(f"Загружаю данные с {url}...")

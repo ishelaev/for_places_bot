@@ -41,6 +41,9 @@ def parse_yandex(url: str) -> dict:
     rating_tag = soup.select_one("span.business-rating-badge-view__rating-text")
     if rating_tag:
         rating = rating_tag.get_text(strip=True)
+        print(f"Найден рейтинг: {rating}")
+    else:
+        print("Рейтинг не найден")
 
     # ===== Отзывы =====
     reviews = None
