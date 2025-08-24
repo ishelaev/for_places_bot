@@ -1,0 +1,567 @@
+2025-08-24 11:34:51,191 - ParserBot - INFO - ✅ Таблица places уже существует
+2025-08-24 11:34:52,397 - ParserBot - INFO - ✅ Таблица places уже существует
+2025-08-24 11:34:52,398 - ParserBot - INFO - 🚀 Запуск серверного бота для PostgreSQL...
+2025-08-24 11:34:52,497 - ParserBot - INFO - ✅ Бот запущен и готов к работе!
+2025-08-24 11:34:52,497 - ParserBot - INFO - 🔧 Администраторы: []
+2025-08-24 11:34:52,497 - ParserBot - INFO - 🗄 Подключение к PostgreSQL: 109.69.56.200:5432/places
+2025-08-24 11:34:52,790 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getMe "HTTP/1.1 200 OK"
+2025-08-24 11:34:52,863 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/deleteWebhook "HTTP/1.1 200 OK"
+2025-08-24 11:34:52,864 - telegram.ext.Application - INFO - Application started
+2025-08-24 11:35:03,101 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:35:13,393 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:35:13,394 - ParserBot - INFO - 📨 Сообщение от 339143049: https://yandex.com/maps/org/vysota_5642/1388278711...
+2025-08-24 11:35:13,643 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/sendMessage "HTTP/1.1 200 OK"
+2025-08-24 11:35:39,369 - ParserBot - ERROR - ❌ Ошибка обновления PostgreSQL: (psycopg2.errors.UndefinedColumn) column "id" does not exist
+LINE 1: SELECT id FROM places WHERE "Ссылка" = 'https://yandex.com/m...
+               ^
+
+[SQL: SELECT id FROM places WHERE "Ссылка" = %(url)s]
+[parameters: {'url': 'https://yandex.com/maps/org/vysota_5642/1388278711/'}]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-24 11:35:39,370 - ParserBot - ERROR - ❌ Ошибка при обработке ссылки: https://yandex.com/maps/org/vysota_5642/1388278711/
+2025-08-24 11:35:39,370 - ParserBot - ERROR -    Ошибка: ❌ Ошибка обновления PostgreSQL: (psycopg2.errors.UndefinedColumn) column "id" does not exist
+LINE 1: SELECT id FROM places WHERE "Ссылка" = 'https://yandex.com/m...
+               ^
+
+[SQL: SELECT id FROM places WHERE "Ссылка" = %(url)s]
+[parameters: {'url': 'https://yandex.com/maps/org/vysota_5642/1388278711/'}]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-08-24 11:35:39,765 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/sendMessage "HTTP/1.1 200 OK"
+2025-08-24 11:35:49,582 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:35:56,539 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:35:56,540 - telegram.ext.Application - INFO - Application is stopping. This might take a moment.
+2025-08-24 11:35:56,540 - telegram.ext.Application - INFO - Application.stop() complete
+2025-08-24 11:37:49,212 - ParserBot - INFO - ✅ Таблица places существует
+2025-08-24 11:37:50,416 - ParserBot - INFO - ✅ Таблица places существует
+2025-08-24 11:37:50,416 - ParserBot - INFO - 🚀 Запуск серверного бота для PostgreSQL...
+2025-08-24 11:37:50,510 - ParserBot - INFO - ✅ Бот запущен и готов к работе!
+2025-08-24 11:37:50,510 - ParserBot - INFO - 🔧 Администраторы: []
+2025-08-24 11:37:50,510 - ParserBot - INFO - 🗄 Подключение к PostgreSQL: 109.69.56.200:5432/places
+2025-08-24 11:37:53,353 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getMe "HTTP/1.1 200 OK"
+2025-08-24 11:37:53,423 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/deleteWebhook "HTTP/1.1 200 OK"
+2025-08-24 11:37:53,424 - telegram.ext.Application - INFO - Application started
+2025-08-24 11:37:58,516 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:37:58,518 - ParserBot - INFO - 📨 Сообщение от 339143049: https://yandex.com/maps/org/vysota_5642/1388278711...
+2025-08-24 11:37:58,845 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/sendMessage "HTTP/1.1 200 OK"
+2025-08-24 11:38:12,347 - ParserBot - INFO - 📊 Excel: обновление существующей записи в PostgreSQL для ссылки https://yandex.com/maps/org/vysota_5642/1388278711/
+2025-08-24 11:38:12,516 - ParserBot - INFO - 📊 Резервная копия сохранена в Excel: https://yandex.com/maps/org/vysota_5642/1388278711/
+2025-08-24 11:38:12,516 - ParserBot - INFO - ✅ Успешно обработана ссылка: https://yandex.com/maps/org/vysota_5642/1388278711/
+2025-08-24 11:38:12,516 - ParserBot - INFO -    Название: Высота 5642
+2025-08-24 11:38:12,516 - ParserBot - INFO -    Рейтинг: 4,8
+2025-08-24 11:38:12,516 - ParserBot - INFO -    Отзывы: 1521 отзывов
+2025-08-24 11:38:12,517 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:38:13,695 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/sendMessage "HTTP/1.1 200 OK"
+2025-08-24 11:38:23,140 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:38:33,228 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:38:45,029 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:38:55,111 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:39:05,560 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:39:15,637 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:39:27,451 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:39:38,176 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:39:48,891 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:39:59,583 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:40:13,840 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:40:23,949 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:40:35,891 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:40:45,967 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:40:56,056 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:41:06,137 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:41:12,650 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:41:12,652 - ParserBot - INFO - 📨 Сообщение от 339143049: https://yandex.ru/maps/org/vino_i_drugiye_lekarstv...
+2025-08-24 11:41:12,992 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/sendMessage "HTTP/1.1 200 OK"
+2025-08-24 11:41:20,861 - ParserBot - INFO - 📊 Excel: создание новой записи в PostgreSQL для ссылки https://yandex.ru/maps/org/vino_i_drugiye_lekarstva/145376192861/
+2025-08-24 11:41:21,201 - ParserBot - INFO - 📊 Резервная копия сохранена в Excel: https://yandex.ru/maps/org/vino_i_drugiye_lekarstva/145376192861/
+2025-08-24 11:41:21,201 - ParserBot - INFO - ✅ Успешно обработана ссылка: https://yandex.ru/maps/org/vino_i_drugiye_lekarstva/145376192861/
+2025-08-24 11:41:21,201 - ParserBot - INFO -    Название: Вино и другие лекарства
+2025-08-24 11:41:21,201 - ParserBot - INFO -    Рейтинг: 5,0
+2025-08-24 11:41:21,201 - ParserBot - INFO -    Отзывы: 483 отзывов
+2025-08-24 11:41:21,457 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/sendMessage "HTTP/1.1 200 OK"
+2025-08-24 11:41:22,729 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:41:32,807 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:41:42,904 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:41:52,995 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:42:03,076 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:42:13,212 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:42:23,296 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:42:33,383 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:42:43,466 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:42:53,548 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:43:03,637 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:43:13,834 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:43:23,970 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:43:34,061 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:43:44,138 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:43:54,211 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:44:04,283 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:44:14,589 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:44:24,662 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:44:34,737 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:44:44,818 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:44:54,892 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:45:04,964 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:45:15,046 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:45:25,120 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:45:35,203 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:45:43,521 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:45:43,522 - telegram.ext.Application - INFO - Application is stopping. This might take a moment.
+2025-08-24 11:45:43,523 - telegram.ext.Application - INFO - Application.stop() complete
+2025-08-24 11:45:50,859 - ParserBot - INFO - ✅ Таблица places существует
+2025-08-24 11:45:52,132 - ParserBot - INFO - ✅ Таблица places существует
+2025-08-24 11:45:52,132 - ParserBot - INFO - 🚀 Запуск серверного бота для PostgreSQL...
+2025-08-24 11:45:52,225 - ParserBot - INFO - ✅ Бот запущен и готов к работе!
+2025-08-24 11:45:52,226 - ParserBot - INFO - 🔧 Администраторы: []
+2025-08-24 11:45:52,226 - ParserBot - INFO - 🗄 Подключение к PostgreSQL: 109.69.56.200:5432/places
+2025-08-24 11:45:52,226 - ParserBot - INFO - 📁 Локальный Excel: /Users/ivan/Desktop/EatSpot_Bot_git/data/places.xlsx
+2025-08-24 11:45:52,468 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getMe "HTTP/1.1 200 OK"
+2025-08-24 11:45:52,562 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/deleteWebhook "HTTP/1.1 200 OK"
+2025-08-24 11:45:52,563 - telegram.ext.Application - INFO - Application started
+2025-08-24 11:46:02,895 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:46:06,590 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:46:06,593 - ParserBot - INFO - 📨 Сообщение от 339143049: https://yandex.ru/maps/org/vino_i_drugiye_lekarstv...
+2025-08-24 11:46:06,858 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/sendMessage "HTTP/1.1 200 OK"
+2025-08-24 11:46:17,074 - ParserBot - INFO - 📊 Excel: обновление существующей записи в PostgreSQL для ссылки https://yandex.ru/maps/org/vino_i_drugiye_lekarstva/145376192861/
+2025-08-24 11:46:17,819 - ParserBot - INFO - 📊 Синхронизация с локальным Excel: /Users/ivan/Desktop/EatSpot_Bot_git/data/places.xlsx
+2025-08-24 11:46:17,948 - ParserBot - INFO - ✅ Локальный Excel файл обновлен: 646 записей
+2025-08-24 11:46:18,080 - ParserBot - INFO - 📊 Резервная копия сохранена в Excel: https://yandex.ru/maps/org/vino_i_drugiye_lekarstva/145376192861/
+2025-08-24 11:46:18,081 - ParserBot - INFO - ✅ Успешно обработана ссылка: https://yandex.ru/maps/org/vino_i_drugiye_lekarstva/145376192861/
+2025-08-24 11:46:18,081 - ParserBot - INFO -    Название: Вино и другие лекарства
+2025-08-24 11:46:18,081 - ParserBot - INFO -    Рейтинг: 5,0
+2025-08-24 11:46:18,081 - ParserBot - INFO -    Отзывы: 483 отзывов
+2025-08-24 11:46:18,082 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:46:18,348 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/sendMessage "HTTP/1.1 200 OK"
+2025-08-24 11:46:28,157 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:46:38,235 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:46:48,320 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:46:58,397 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:47:08,476 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:47:18,556 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:47:28,636 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:47:38,713 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:47:48,792 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:47:58,916 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:48:08,999 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:48:19,081 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:48:29,167 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:48:39,245 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:48:49,324 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:48:59,404 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:49:09,570 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:49:19,662 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:49:29,748 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:49:39,826 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:49:49,904 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:49:59,987 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:50:07,785 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:50:07,789 - ParserBot - INFO - 📨 Сообщение от 339143049: https://yandex.ru/maps/org/syrovarnya/191911335353...
+2025-08-24 11:50:08,112 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/sendMessage "HTTP/1.1 200 OK"
+2025-08-24 11:50:18,118 - ParserBot - INFO - 📊 Excel: создание новой записи в PostgreSQL для ссылки https://yandex.ru/maps/org/syrovarnya/191911335353/
+2025-08-24 11:50:18,780 - ParserBot - INFO - 📊 Синхронизация с локальным Excel: /Users/ivan/Desktop/EatSpot_Bot_git/data/places.xlsx
+2025-08-24 11:50:18,896 - ParserBot - INFO - ✅ Локальный Excel файл обновлен: 647 записей
+2025-08-24 11:50:18,907 - ParserBot - INFO - 📊 Резервная копия сохранена в Excel: https://yandex.ru/maps/org/syrovarnya/191911335353/
+2025-08-24 11:50:18,907 - ParserBot - INFO - ✅ Успешно обработана ссылка: https://yandex.ru/maps/org/syrovarnya/191911335353/
+2025-08-24 11:50:18,907 - ParserBot - INFO -    Название: Сыроварня
+2025-08-24 11:50:18,907 - ParserBot - INFO -    Рейтинг: 4,9
+2025-08-24 11:50:18,908 - ParserBot - INFO -    Отзывы: 2563 отзывов
+2025-08-24 11:50:18,909 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:50:19,246 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/sendMessage "HTTP/1.1 200 OK"
+2025-08-24 11:50:28,991 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:50:39,176 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:50:49,314 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:50:59,397 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:51:09,482 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:51:19,562 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:51:29,659 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:51:39,740 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:51:49,830 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:51:59,911 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:52:09,992 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:52:20,075 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:52:30,156 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:52:40,316 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:52:50,396 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:53:00,486 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:53:10,564 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:53:20,640 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:53:30,720 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:53:40,808 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:53:50,886 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:54:00,984 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:54:11,066 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:54:21,144 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:54:31,248 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:54:41,325 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:54:51,407 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:55:01,488 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:55:11,564 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:55:21,640 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:55:31,717 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:55:41,789 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:55:51,866 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:56:01,943 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:56:12,031 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:56:21,507 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:56:21,508 - telegram.ext.Application - INFO - Application is stopping. This might take a moment.
+2025-08-24 11:56:21,508 - telegram.ext.Application - INFO - Application.stop() complete
+2025-08-24 11:56:39,124 - ParserBot - INFO - ✅ Таблица places существует
+2025-08-24 11:56:40,336 - ParserBot - INFO - ✅ Таблица places существует
+2025-08-24 11:56:40,337 - ParserBot - INFO - 🚀 Запуск серверного бота для PostgreSQL с Instagram...
+2025-08-24 11:56:40,435 - ParserBot - INFO - ✅ Бот запущен и готов к работе!
+2025-08-24 11:56:40,435 - ParserBot - INFO - 🔧 Администраторы: []
+2025-08-24 11:56:40,435 - ParserBot - INFO - 🗄 Подключение к PostgreSQL: 109.69.56.200:5432/places
+2025-08-24 11:56:40,435 - ParserBot - INFO - 📁 Локальный Excel: /Users/ivan/Desktop/EatSpot_Bot_git/data/places.xlsx
+2025-08-24 11:56:40,435 - ParserBot - INFO - 📸 Instagram парсинг: включен
+2025-08-24 11:56:40,661 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getMe "HTTP/1.1 200 OK"
+2025-08-24 11:56:40,731 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/deleteWebhook "HTTP/1.1 200 OK"
+2025-08-24 11:56:40,732 - telegram.ext.Application - INFO - Application started
+2025-08-24 11:56:50,959 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:56:58,341 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:56:58,343 - ParserBot - INFO - 📨 Сообщение от 339143049: https://yandex.ru/maps/org/8_oz/1171896955/...
+2025-08-24 11:56:58,607 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/sendMessage "HTTP/1.1 200 OK"
+2025-08-24 11:57:06,651 - ParserBot - INFO - 📊 Excel: создание новой записи в PostgreSQL для ссылки https://yandex.ru/maps/org/8_oz/1171896955/
+2025-08-24 11:57:11,208 - ParserBot - INFO - 📊 Синхронизация с локальным Excel: /Users/ivan/Desktop/EatSpot_Bot_git/data/places.xlsx
+2025-08-24 11:57:11,338 - ParserBot - INFO - ✅ Локальный Excel файл обновлен: 648 записей
+2025-08-24 11:57:11,470 - ParserBot - INFO - 📊 Резервная копия сохранена в Excel: https://yandex.ru/maps/org/8_oz/1171896955/
+2025-08-24 11:57:11,470 - ParserBot - INFO - ✅ Успешно обработана ссылка: https://yandex.ru/maps/org/8_oz/1171896955/
+2025-08-24 11:57:11,471 - ParserBot - INFO -    Название: 8 Oz
+2025-08-24 11:57:11,471 - ParserBot - INFO -    Рейтинг: 4,6
+2025-08-24 11:57:11,471 - ParserBot - INFO -    Отзывы: 943 отзывов
+2025-08-24 11:57:11,472 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:57:11,706 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/sendMessage "HTTP/1.1 400 Bad Request"
+2025-08-24 11:57:11,709 - ParserBot - ERROR - ❌ Ошибка при обработке ссылки: https://yandex.ru/maps/org/8_oz/1171896955/
+2025-08-24 11:57:11,709 - ParserBot - ERROR -    Ошибка: Ошибка при обработке ссылки: Can't parse entities: can't find end of the entity starting at byte offset 772
+2025-08-24 11:57:11,814 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/sendMessage "HTTP/1.1 200 OK"
+2025-08-24 11:57:21,613 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:57:31,686 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:57:41,759 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:57:51,830 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:58:01,910 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:58:11,986 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:58:22,099 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:58:32,175 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:58:36,874 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:58:36,875 - telegram.ext.Application - INFO - Application is stopping. This might take a moment.
+2025-08-24 11:58:36,875 - telegram.ext.Application - INFO - Application.stop() complete
+2025-08-24 11:58:41,212 - ParserBot - INFO - ✅ Таблица places существует
+2025-08-24 11:58:42,401 - ParserBot - INFO - ✅ Таблица places существует
+2025-08-24 11:58:42,401 - ParserBot - INFO - 🚀 Запуск серверного бота для PostgreSQL с Instagram...
+2025-08-24 11:58:42,495 - ParserBot - INFO - ✅ Бот запущен и готов к работе!
+2025-08-24 11:58:42,495 - ParserBot - INFO - 🔧 Администраторы: []
+2025-08-24 11:58:42,495 - ParserBot - INFO - 🗄 Подключение к PostgreSQL: 109.69.56.200:5432/places
+2025-08-24 11:58:42,495 - ParserBot - INFO - 📁 Локальный Excel: /Users/ivan/Desktop/EatSpot_Bot_git/data/places.xlsx
+2025-08-24 11:58:42,495 - ParserBot - INFO - 📸 Instagram парсинг: включен
+2025-08-24 11:58:42,708 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getMe "HTTP/1.1 200 OK"
+2025-08-24 11:58:42,781 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/deleteWebhook "HTTP/1.1 200 OK"
+2025-08-24 11:58:42,782 - telegram.ext.Application - INFO - Application started
+2025-08-24 11:58:52,998 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:58:56,993 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:58:56,995 - ParserBot - INFO - 📨 Сообщение от 339143049: https://yandex.ru/maps/org/8_oz/1171896955/...
+2025-08-24 11:58:57,293 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/sendMessage "HTTP/1.1 200 OK"
+2025-08-24 11:59:05,104 - ParserBot - INFO - 📊 Excel: обновление существующей записи в PostgreSQL для ссылки https://yandex.ru/maps/org/8_oz/1171896955/
+2025-08-24 11:59:09,434 - ParserBot - INFO - 📊 Синхронизация с локальным Excel: /Users/ivan/Desktop/EatSpot_Bot_git/data/places.xlsx
+2025-08-24 11:59:09,552 - ParserBot - INFO - ✅ Локальный Excel файл обновлен: 648 записей
+2025-08-24 11:59:09,682 - ParserBot - INFO - 📊 Резервная копия сохранена в Excel: https://yandex.ru/maps/org/8_oz/1171896955/
+2025-08-24 11:59:09,682 - ParserBot - INFO - ✅ Успешно обработана ссылка: https://yandex.ru/maps/org/8_oz/1171896955/
+2025-08-24 11:59:09,682 - ParserBot - INFO -    Название: 8 Oz
+2025-08-24 11:59:09,682 - ParserBot - INFO -    Рейтинг: 4,6
+2025-08-24 11:59:09,682 - ParserBot - INFO -    Отзывы: 943 отзывов
+2025-08-24 11:59:09,683 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:59:10,001 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/sendMessage "HTTP/1.1 200 OK"
+2025-08-24 11:59:19,755 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:59:29,829 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:59:39,960 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 11:59:50,035 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:00:00,115 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:00:10,261 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:00:20,329 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:00:30,401 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:00:40,471 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:00:50,545 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:01:00,619 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:01:10,695 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:01:20,773 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:01:30,848 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:01:40,924 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:01:50,993 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:02:01,065 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:02:11,140 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:02:21,228 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:02:25,772 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:02:26,096 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/sendMessage "HTTP/1.1 200 OK"
+2025-08-24 12:02:33,954 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:02:33,954 - telegram.ext.Application - INFO - Application is stopping. This might take a moment.
+2025-08-24 12:02:33,954 - telegram.ext.Application - INFO - Application.stop() complete
+2025-08-24 12:02:41,060 - ParserBot - INFO - ✅ Таблица places существует
+2025-08-24 12:02:42,268 - ParserBot - INFO - ✅ Таблица places существует
+2025-08-24 12:02:42,268 - ParserBot - INFO - 🚀 Запуск серверного бота для PostgreSQL с Instagram...
+2025-08-24 12:02:42,368 - ParserBot - INFO - ✅ Бот запущен и готов к работе!
+2025-08-24 12:02:42,368 - ParserBot - INFO - 🔧 Администраторы: []
+2025-08-24 12:02:42,368 - ParserBot - INFO - 🗄 Подключение к PostgreSQL: 109.69.56.200:5432/places
+2025-08-24 12:02:42,368 - ParserBot - INFO - 📁 Локальный Excel: /Users/ivan/Desktop/EatSpot_Bot_git/data/places.xlsx
+2025-08-24 12:02:42,368 - ParserBot - INFO - 📸 Instagram парсинг: включен
+2025-08-24 12:02:42,594 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getMe "HTTP/1.1 200 OK"
+2025-08-24 12:02:42,666 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/deleteWebhook "HTTP/1.1 200 OK"
+2025-08-24 12:02:42,667 - telegram.ext.Application - INFO - Application started
+2025-08-24 12:02:49,896 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:02:49,897 - ParserBot - INFO - 📨 Сообщение от 339143049: https://yandex.ru/maps/org/8_oz/1171896955/...
+2025-08-24 12:02:50,159 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/sendMessage "HTTP/1.1 200 OK"
+2025-08-24 12:03:00,975 - ParserBot - INFO - 📊 Excel: обновление существующей записи в PostgreSQL для ссылки https://yandex.ru/maps/org/8_oz/1171896955/
+2025-08-24 12:03:05,517 - ParserBot - INFO - 📊 Синхронизация с локальным Excel: /Users/ivan/Desktop/EatSpot_Bot_git/data/places.xlsx
+2025-08-24 12:03:05,643 - ParserBot - INFO - ✅ Локальный Excel файл обновлен: 648 записей
+2025-08-24 12:03:05,774 - ParserBot - INFO - 📊 Резервная копия сохранена в Excel: https://yandex.ru/maps/org/8_oz/1171896955/
+2025-08-24 12:03:54,304 - ParserBot - ERROR - ❌ Ошибка поиска Instagram для 8 Oz: 429 Client Error: Too Many Requests for url: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dsite%253Ainstagram.com%252B8%252BOz%252B%25D0%259C%25D0%25BE%25D1%2581%25D0%25BA%25D0%25B2%25D0%25B0%26num%3D7%26hl%3Dru%26start%3D0&hl=ru&q=EgRtRTjIGPqqq8UGIjDoJDxAYMLBGKHWol3OdweO6sRwV3E9qIGFVtWLnFV57QZYvUuxEZMDOrNh8cbQoskyAnJSWgFD
+2025-08-24 12:03:54,305 - ParserBot - INFO - ❌ Не найден Instagram для 8 Oz — добавляю в чёрный список
+2025-08-24 12:03:54,307 - ParserBot - INFO - ⚠️ Instagram не найден для 8 Oz
+2025-08-24 12:03:54,307 - ParserBot - INFO - ✅ Успешно обработана ссылка: https://yandex.ru/maps/org/8_oz/1171896955/
+2025-08-24 12:03:54,307 - ParserBot - INFO -    Название: 8 Oz
+2025-08-24 12:03:54,307 - ParserBot - INFO -    Рейтинг: 4,6
+2025-08-24 12:03:54,307 - ParserBot - INFO -    Отзывы: 943 отзывов
+2025-08-24 12:03:54,571 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/sendMessage "HTTP/1.1 200 OK"
+2025-08-24 12:04:04,533 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:04:14,608 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:04:24,695 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:04:34,769 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:04:37,136 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:04:37,529 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/sendMessage "HTTP/1.1 200 OK"
+2025-08-24 12:04:47,209 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:04:57,281 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:05:07,373 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:05:17,450 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:05:27,601 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:05:37,740 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:05:47,825 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:05:57,903 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:06:07,984 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:06:18,061 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:06:28,134 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:06:38,258 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:06:48,348 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:06:58,424 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:07:08,503 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:07:18,578 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:07:28,647 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:07:38,718 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:07:48,793 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:07:54,061 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:07:54,062 - telegram.ext.Application - INFO - Application is stopping. This might take a moment.
+2025-08-24 12:07:54,062 - telegram.ext.Application - INFO - Application.stop() complete
+2025-08-24 12:07:59,852 - ParserBot - INFO - ✅ Таблица places существует
+2025-08-24 12:08:01,055 - ParserBot - INFO - ✅ Таблица places существует
+2025-08-24 12:08:01,056 - ParserBot - INFO - 🚀 Запуск серверного бота для PostgreSQL с Instagram...
+2025-08-24 12:08:01,152 - ParserBot - INFO - ✅ Бот запущен и готов к работе!
+2025-08-24 12:08:01,152 - ParserBot - INFO - 🔧 Администраторы: []
+2025-08-24 12:08:01,152 - ParserBot - INFO - 🗄 Подключение к PostgreSQL: 109.69.56.200:5432/places
+2025-08-24 12:08:01,152 - ParserBot - INFO - 📁 Локальный Excel: /Users/ivan/Desktop/EatSpot_Bot_git/data/places.xlsx
+2025-08-24 12:08:01,152 - ParserBot - INFO - 📸 Instagram парсинг: включен
+2025-08-24 12:08:01,372 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getMe "HTTP/1.1 200 OK"
+2025-08-24 12:08:01,447 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/deleteWebhook "HTTP/1.1 200 OK"
+2025-08-24 12:08:01,449 - telegram.ext.Application - INFO - Application started
+2025-08-24 12:08:11,668 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:08:21,743 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:08:31,821 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:08:41,896 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:08:46,904 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:08:46,904 - telegram.ext.Application - INFO - Application is stopping. This might take a moment.
+2025-08-24 12:08:46,904 - telegram.ext.Application - INFO - Application.stop() complete
+2025-08-24 12:08:49,719 - ParserBot - INFO - ✅ Таблица places существует
+2025-08-24 12:08:50,926 - ParserBot - INFO - ✅ Таблица places существует
+2025-08-24 12:08:50,926 - ParserBot - INFO - 🚀 Запуск серверного бота для PostgreSQL с Instagram...
+2025-08-24 12:08:51,019 - ParserBot - INFO - ✅ Бот запущен и готов к работе!
+2025-08-24 12:08:51,019 - ParserBot - INFO - 🔧 Администраторы: []
+2025-08-24 12:08:51,019 - ParserBot - INFO - 🗄 Подключение к PostgreSQL: 109.69.56.200:5432/places
+2025-08-24 12:08:51,019 - ParserBot - INFO - 📁 Локальный Excel: /Users/ivan/Desktop/EatSpot_Bot_git/data/places.xlsx
+2025-08-24 12:08:51,019 - ParserBot - INFO - 📸 Instagram парсинг: включен
+2025-08-24 12:08:51,242 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getMe "HTTP/1.1 200 OK"
+2025-08-24 12:08:51,322 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/deleteWebhook "HTTP/1.1 200 OK"
+2025-08-24 12:08:51,322 - telegram.ext.Application - INFO - Application started
+2025-08-24 12:09:01,601 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:09:04,573 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:09:04,579 - ParserBot - INFO - 📨 Сообщение от 339143049: https://yandex.ru/maps/org/kafe_veranda_dva_yablok...
+2025-08-24 12:09:05,111 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/sendMessage "HTTP/1.1 200 OK"
+2025-08-24 12:09:12,850 - ParserBot - INFO - 📊 Excel: создание новой записи в PostgreSQL для ссылки https://yandex.ru/maps/org/kafe_veranda_dva_yabloka/218174835282/
+2025-08-24 12:09:13,492 - ParserBot - INFO - 📊 Синхронизация с локальным Excel: /Users/ivan/Desktop/EatSpot_Bot_git/data/places.xlsx
+2025-08-24 12:09:13,615 - ParserBot - INFO - ✅ Локальный Excel файл обновлен: 649 записей
+2025-08-24 12:09:13,753 - ParserBot - INFO - 📊 Резервная копия сохранена в Excel: https://yandex.ru/maps/org/kafe_veranda_dva_yabloka/218174835282/
+2025-08-24 12:09:17,544 - ParserBot - ERROR - ❌ Ошибка поиска Instagram для Кафе-веранда Два Яблока: 429 Client Error: Too Many Requests for url: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dsite%253Ainstagram.com%252B%25D0%259A%25D0%25B0%25D1%2584%25D0%25B5-%25D0%25B2%25D0%25B5%25D1%2580%25D0%25B0%25D0%25BD%25D0%25B4%25D0%25B0%252B%25D0%2594%25D0%25B2%25D0%25B0%252B%25D0%25AF%25D0%25B1%25D0%25BB%25D0%25BE%25D0%25BA%25D0%25B0%252B%25D0%259C%25D0%25BE%25D1%2581%25D0%25BA%25D0%25B2%25D0%25B0%26num%3D7%26hl%3Dru%26start%3D0&hl=ru&q=EgRtRTjIGL2tq8UGIjCpr0fv22m5LF3JkCisZ1WrWvw98Ff-d08tPriWENrBapdHk_QyXylyTOe6As1lODsyAnJSWgFD
+2025-08-24 12:09:17,545 - ParserBot - INFO - ❌ Не найден Instagram для Кафе-веранда Два Яблока — добавляю в чёрный список
+2025-08-24 12:09:17,547 - ParserBot - INFO - ⚠️ Instagram не найден для Кафе-веранда Два Яблока
+2025-08-24 12:09:17,547 - ParserBot - INFO - ✅ Успешно обработана ссылка: https://yandex.ru/maps/org/kafe_veranda_dva_yabloka/218174835282/
+2025-08-24 12:09:17,547 - ParserBot - INFO -    Название: Кафе-веранда Два Яблока
+2025-08-24 12:09:17,547 - ParserBot - INFO -    Рейтинг: 4,8
+2025-08-24 12:09:17,547 - ParserBot - INFO -    Отзывы: 109 отзывов
+2025-08-24 12:09:17,548 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:09:17,796 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/sendMessage "HTTP/1.1 200 OK"
+2025-08-24 12:09:20,919 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:09:21,074 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/sendMessage "HTTP/1.1 200 OK"
+2025-08-24 12:09:30,993 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:09:41,063 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:09:51,135 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:10:01,213 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:10:11,287 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:10:21,359 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:10:31,434 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:10:41,505 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:10:45,224 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:10:45,225 - telegram.ext.Application - INFO - Application is stopping. This might take a moment.
+2025-08-24 12:10:45,225 - telegram.ext.Application - INFO - Application.stop() complete
+2025-08-24 12:11:25,932 - ParserBot - INFO - ✅ Таблица places существует
+2025-08-24 12:11:27,116 - ParserBot - INFO - ✅ Таблица places существует
+2025-08-24 12:11:27,117 - ParserBot - INFO - 🚀 Запуск серверного бота для PostgreSQL с Instagram...
+2025-08-24 12:11:27,117 - ParserBot - INFO - 🔧 Администраторы: []
+2025-08-24 12:11:27,213 - ParserBot - INFO - ✅ Бот запущен и готов к работе!
+2025-08-24 12:11:27,213 - ParserBot - INFO - 🔧 Администраторы: []
+2025-08-24 12:11:27,213 - ParserBot - INFO - 🗄 Подключение к PostgreSQL: 109.69.56.200:5432/places
+2025-08-24 12:11:27,213 - ParserBot - INFO - 📁 Локальный Excel: /Users/ivan/Desktop/EatSpot_Bot_git/data/places.xlsx
+2025-08-24 12:11:27,213 - ParserBot - INFO - 📸 Instagram парсинг: включен
+2025-08-24 12:11:27,443 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getMe "HTTP/1.1 200 OK"
+2025-08-24 12:11:27,515 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/deleteWebhook "HTTP/1.1 200 OK"
+2025-08-24 12:11:27,516 - telegram.ext.Application - INFO - Application started
+2025-08-24 12:11:29,629 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:11:29,630 - ParserBot - INFO - 📨 Сообщение от 339143049: https://yandex.ru/maps/org/rebecca/94656871388/...
+2025-08-24 12:11:29,754 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/sendMessage "HTTP/1.1 200 OK"
+2025-08-24 12:11:37,720 - ParserBot - INFO - 📊 Excel: создание новой записи в PostgreSQL для ссылки https://yandex.ru/maps/org/rebecca/94656871388/
+2025-08-24 12:11:38,388 - ParserBot - INFO - 📊 Синхронизация с локальным Excel: /Users/ivan/Desktop/EatSpot_Bot_git/data/places.xlsx
+2025-08-24 12:11:38,516 - ParserBot - INFO - ✅ Локальный Excel файл обновлен: 650 записей
+2025-08-24 12:11:38,678 - ParserBot - INFO - 📊 Резервная копия сохранена в Excel: https://yandex.ru/maps/org/rebecca/94656871388/
+2025-08-24 12:11:42,345 - ParserBot - ERROR - ❌ Ошибка поиска Instagram для Rebecca: 429 Client Error: Too Many Requests for url: https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fq%3Dsite%253Ainstagram.com%252BRebecca%252B%25D0%259C%25D0%25BE%25D1%2581%25D0%25BA%25D0%25B2%25D0%25B0%26num%3D7%26hl%3Dru%26start%3D0&hl=ru&q=EgRtRTjIGM6uq8UGIjDrfbfiIMB1bHMn-0kmVoWAcncOwFz4aX4VR0CLlydchn2ZF1naKGXQ7HH1CVNG4X8yAnJSWgFD
+2025-08-24 12:11:42,346 - ParserBot - INFO - ❌ Не найден Instagram для Rebecca — добавляю в чёрный список
+2025-08-24 12:11:42,346 - ParserBot - INFO - ⚠️ Instagram не найден для Rebecca
+2025-08-24 12:11:42,346 - ParserBot - INFO - ✅ Успешно обработана ссылка: https://yandex.ru/maps/org/rebecca/94656871388/
+2025-08-24 12:11:42,347 - ParserBot - INFO -    Название: Rebecca
+2025-08-24 12:11:42,347 - ParserBot - INFO -    Рейтинг: 4,7
+2025-08-24 12:11:42,347 - ParserBot - INFO -    Отзывы: 833 отзывов
+2025-08-24 12:11:42,349 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:11:42,607 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/sendMessage "HTTP/1.1 200 OK"
+2025-08-24 12:11:47,712 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:11:47,713 - ParserBot - INFO - 🔍 Проверка прав администратора для 339143049, ADMIN_IDS: []
+2025-08-24 12:11:48,033 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/sendMessage "HTTP/1.1 200 OK"
+2025-08-24 12:11:57,785 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:12:07,858 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:12:17,928 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:12:28,163 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:12:38,239 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:12:48,312 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:12:58,392 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:13:08,465 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:13:18,541 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:13:28,617 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:13:36,588 - ParserBot - INFO - ✅ Таблица places существует
+2025-08-24 12:13:36,589 - ParserBot - INFO - 🔍 Проверка прав администратора для 339143049, ADMIN_IDS: []
+2025-08-24 12:13:38,692 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:13:48,764 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:13:58,841 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:14:08,914 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:14:18,990 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:14:23,978 - ParserBot - INFO - ✅ Таблица places существует
+2025-08-24 12:14:23,979 - ParserBot - INFO - 🔍 Проверка прав администратора для 339143049, ADMIN_IDS: []
+2025-08-24 12:14:29,062 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:14:39,140 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:14:49,214 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:14:59,287 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:15:09,359 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:15:19,433 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:15:29,507 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:15:30,322 - ParserBot - INFO - ✅ Таблица places существует
+2025-08-24 12:15:30,323 - ParserBot - INFO - 🔍 Проверка прав администратора для 339143049, ADMIN_IDS: [339143049]
+2025-08-24 12:15:35,374 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:15:35,374 - telegram.ext.Application - INFO - Application is stopping. This might take a moment.
+2025-08-24 12:15:35,375 - telegram.ext.Application - INFO - Application.stop() complete
+2025-08-24 12:15:43,612 - ParserBot - INFO - ✅ Таблица places существует
+2025-08-24 12:15:44,817 - ParserBot - INFO - ✅ Таблица places существует
+2025-08-24 12:15:44,817 - ParserBot - INFO - 🚀 Запуск серверного бота для PostgreSQL с Instagram...
+2025-08-24 12:15:44,817 - ParserBot - INFO - 🔧 Администраторы: [339143049]
+2025-08-24 12:15:44,910 - ParserBot - INFO - ✅ Бот запущен и готов к работе!
+2025-08-24 12:15:44,910 - ParserBot - INFO - 🔧 Администраторы: [339143049]
+2025-08-24 12:15:44,910 - ParserBot - INFO - 🗄 Подключение к PostgreSQL: 109.69.56.200:5432/places
+2025-08-24 12:15:44,910 - ParserBot - INFO - 📁 Локальный Excel: /Users/ivan/Desktop/EatSpot_Bot_git/data/places.xlsx
+2025-08-24 12:15:44,910 - ParserBot - INFO - 📸 Instagram парсинг: включен
+2025-08-24 12:15:45,133 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getMe "HTTP/1.1 200 OK"
+2025-08-24 12:15:45,204 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/deleteWebhook "HTTP/1.1 200 OK"
+2025-08-24 12:15:45,205 - telegram.ext.Application - INFO - Application started
+2025-08-24 12:15:55,452 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:16:05,535 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:16:15,616 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:16:24,302 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:16:24,302 - ParserBot - INFO - 🔍 Проверка прав администратора для 339143049, ADMIN_IDS: [339143049]
+2025-08-24 12:16:24,302 - ParserBot - INFO - 👤 Админ 339143049: запустил поиск Instagram
+2025-08-24 12:16:24,760 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/sendMessage "HTTP/1.1 200 OK"
+2025-08-24 12:16:24,761 - ParserBot - INFO - 🔍 Обрабатываю: 8 Oz
+2025-08-24 12:16:24,762 - ParserBot - INFO - ⏭ Пропущено (в чёрном списке): 8 Oz
+2025-08-24 12:16:26,768 - ParserBot - INFO - 🔍 Обрабатываю: Ngon
+2025-08-24 12:16:26,769 - ParserBot - INFO - ⏭ Пропущено (в чёрном списке): Ngon
+2025-08-24 12:16:28,774 - ParserBot - INFO - 🔍 Обрабатываю: Rebecca
+2025-08-24 12:16:28,776 - ParserBot - INFO - ⏭ Пропущено (в чёрном списке): Rebecca
+2025-08-24 12:16:30,780 - ParserBot - INFO - 🔍 Обрабатываю: Вино и другие лекарства
+2025-08-24 12:16:30,781 - ParserBot - INFO - ⏭ Пропущено (в чёрном списке): Вино и другие лекарства
+2025-08-24 12:16:32,785 - ParserBot - INFO - 🔍 Обрабатываю: Кафе-веранда Два Яблока
+2025-08-24 12:16:32,786 - ParserBot - INFO - ⏭ Пропущено (в чёрном списке): Кафе-веранда Два Яблока
+2025-08-24 12:16:34,787 - ParserBot - INFO - 🔍 Обрабатываю: Китайский чай
+2025-08-24 12:16:34,787 - ParserBot - INFO - ⏭ Пропущено (в чёрном списке): Китайский чай
+2025-08-24 12:16:36,789 - ParserBot - INFO - 🔍 Обрабатываю: Пигги
+2025-08-24 12:16:36,790 - ParserBot - INFO - ⏭ Пропущено (в чёрном списке): Пигги
+2025-08-24 12:16:38,796 - ParserBot - INFO - 🔍 Обрабатываю: Стая
+2025-08-24 12:16:38,797 - ParserBot - INFO - ⏭ Пропущено (в чёрном списке): Стая
+2025-08-24 12:16:40,802 - ParserBot - INFO - 🔍 Обрабатываю: Сыроварня
+2025-08-24 12:16:40,803 - ParserBot - INFO - ⏭ Пропущено (в чёрном списке): Сыроварня
+2025-08-24 12:16:43,130 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/sendMessage "HTTP/1.1 200 OK"
+2025-08-24 12:16:53,053 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:17:03,134 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:17:13,269 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:17:23,349 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:17:33,425 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:17:43,503 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:17:53,589 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:18:03,667 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:18:13,750 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:18:23,830 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:18:33,907 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:18:43,980 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:18:54,073 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:19:04,147 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:19:14,221 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:19:24,300 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:19:34,480 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:19:44,556 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:19:54,639 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:20:04,719 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:20:14,796 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:20:24,870 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:20:32,837 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:20:32,838 - telegram.ext.Application - INFO - Application is stopping. This might take a moment.
+2025-08-24 12:20:32,838 - telegram.ext.Application - INFO - Application.stop() complete
+2025-08-24 12:20:40,481 - ParserBot - INFO - ✅ Таблица places существует
+2025-08-24 12:20:41,747 - ParserBot - INFO - ✅ Таблица places существует
+2025-08-24 12:20:41,748 - ParserBot - INFO - 🚀 Запуск серверного бота для PostgreSQL...
+2025-08-24 12:20:41,748 - ParserBot - INFO - 🔧 Администраторы: [339143049]
+2025-08-24 12:20:41,841 - ParserBot - INFO - ✅ Бот запущен и готов к работе!
+2025-08-24 12:20:41,841 - ParserBot - INFO - 🔧 Администраторы: [339143049]
+2025-08-24 12:20:41,841 - ParserBot - INFO - 🗄 Подключение к PostgreSQL: 109.69.56.200:5432/places
+2025-08-24 12:20:41,841 - ParserBot - INFO - 📁 Локальный Excel: /Users/ivan/Desktop/EatSpot_Bot_git/data/places.xlsx
+2025-08-24 12:20:42,126 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getMe "HTTP/1.1 200 OK"
+2025-08-24 12:20:42,196 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/deleteWebhook "HTTP/1.1 200 OK"
+2025-08-24 12:20:42,197 - telegram.ext.Application - INFO - Application started
+2025-08-24 12:20:52,432 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:21:02,523 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:21:12,611 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:21:22,694 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:21:32,770 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:21:34,078 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:21:34,080 - ParserBot - INFO - 📨 Сообщение от 339143049: https://yandex.ru/maps/org/krosta/131389987222/...
+2025-08-24 12:21:34,391 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/sendMessage "HTTP/1.1 200 OK"
+2025-08-24 12:21:42,576 - ParserBot - INFO - 📊 Excel: создание новой записи в PostgreSQL для ссылки https://yandex.ru/maps/org/krosta/131389987222/
+2025-08-24 12:21:43,203 - ParserBot - INFO - 📊 Синхронизация с локальным Excel: /Users/ivan/Desktop/EatSpot_Bot_git/data/places.xlsx
+2025-08-24 12:21:43,339 - ParserBot - INFO - ✅ Локальный Excel файл обновлен: 651 записей
+2025-08-24 12:21:43,494 - ParserBot - INFO - 📊 Резервная копия сохранена в Excel: https://yandex.ru/maps/org/krosta/131389987222/
+2025-08-24 12:21:43,494 - ParserBot - INFO - ✅ Успешно обработана ссылка: https://yandex.ru/maps/org/krosta/131389987222/
+2025-08-24 12:21:43,494 - ParserBot - INFO -    Название: Кроста
+2025-08-24 12:21:43,494 - ParserBot - INFO -    Рейтинг: 4,7
+2025-08-24 12:21:43,494 - ParserBot - INFO -    Отзывы: 553 отзывов
+2025-08-24 12:21:43,752 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/sendMessage "HTTP/1.1 200 OK"
+2025-08-24 12:21:44,162 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:21:54,236 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:22:04,342 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:22:14,428 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:22:24,514 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:22:34,604 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:22:44,689 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
+2025-08-24 12:22:54,766 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8478245526:AAHAua7Xnr2CIt2xg_zjfaqk7HVPOCt2Nxw/getUpdates "HTTP/1.1 200 OK"
