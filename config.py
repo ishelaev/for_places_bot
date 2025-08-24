@@ -18,7 +18,7 @@ POSTGRES_CONFIG = {
     'port': 5432,
     'database': 'places',
     'user': 'root',
-    'password': 'Aa446123789rm config.py'
+    'password': 'Aa446123789!!'
 }
 
 # Строка подключения к PostgreSQL
