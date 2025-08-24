@@ -1,0 +1,19 @@
+[Unit]
+Description=Places Parser Bot
+After=network.target
+
+[Service]
+Type=simple
+User=ivan
+WorkingDirectory=/Users/ivan/Desktop/For_places_bot
+ExecStart=/usr/bin/python3 /Users/ivan/Desktop/For_places_bot/server_bot.py
+Restart=always
+RestartSec=10
+Environment=PYTHONPATH=/Users/ivan/Desktop/For_places_bot
+
+# Логирование
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
