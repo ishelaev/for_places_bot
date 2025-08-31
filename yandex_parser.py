@@ -41,11 +41,6 @@ def parse_yandex(url: str) -> dict:
     rating_tag = soup.select_one("span.business-rating-badge-view__rating-text")
     if rating_tag:
         rating = rating_tag.get_text(strip=True)
-        print(f"Найден рейтинг: {rating}")
-    else:
-        print("Рейтинг не найден")
-    
-    print("Продолжаем парсинг...")
 
     # ===== Отзывы =====
     reviews = None
@@ -109,8 +104,6 @@ def parse_yandex(url: str) -> dict:
 
     driver.quit()
     
-    print("Парсинг завершен, возвращаем данные...")
-    
     result = {
         "title": title or "Название не найдено",
         "rating": rating or "Рейтинг не найден",
@@ -120,5 +113,4 @@ def parse_yandex(url: str) -> dict:
         "categories": categories
     }
     
-    print(f"Результат: {result}")
     return result
