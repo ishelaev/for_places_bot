@@ -44,6 +44,8 @@ def parse_yandex(url: str) -> dict:
         print(f"Найден рейтинг: {rating}")
     else:
         print("Рейтинг не найден")
+    
+    print("Продолжаем парсинг...")
 
     # ===== Отзывы =====
     reviews = None
@@ -106,8 +108,10 @@ def parse_yandex(url: str) -> dict:
             categories = ", ".join(parts)
 
     driver.quit()
-
-    return {
+    
+    print("Парсинг завершен, возвращаем данные...")
+    
+    result = {
         "title": title or "Название не найдено",
         "rating": rating or "Рейтинг не найден",
         "reviews": reviews or "Отзывы не найдены",
@@ -115,3 +119,6 @@ def parse_yandex(url: str) -> dict:
         "hours": hours,
         "categories": categories
     }
+    
+    print(f"Результат: {result}")
+    return result

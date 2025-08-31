@@ -11,8 +11,12 @@ def update_excel_with_yandex_data(url: str) -> dict:
     Если строки с такой ссылкой нет, создаём новую.
     Возвращает словарь с данными для отображения пользователю.
     """
+    print(f"Начинаем обработку URL: {url}")
+    
     # Парсим данные
+    print("Вызываем parse_yandex...")
     data = parse_yandex(url)
+    print(f"Данные получены: {data}")
 
     # Загружаем Excel
     df = pd.read_excel(EXCEL_PATH)
