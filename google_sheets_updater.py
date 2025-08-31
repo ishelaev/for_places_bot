@@ -5,6 +5,7 @@ Google Sheets Updater - обновление Google Sheets данными с Я�
 
 from google_sheets_manager import GoogleSheetsManager
 from yandex_parser import parse_yandex
+from backup_manager import BackupManager
 
 # ID вашей Google таблицы
 SPREADSHEET_ID = "1w_jfZxc9yZS74-hRofIJfENd3ZqRUyE3Lh40TKVbLaI"
@@ -16,15 +17,12 @@ def update_google_sheets_with_yandex_data(url: str) -> dict:
     Возвращает словарь с данными для отображения пользователю.
     """
     try:
-        print(f"Начинаем обработку URL для Google Sheets: {url}")
-        
-        # Парсим данные
-        print("Вызываем parse_yandex...")
         data = parse_yandex(url)
-        print(f"Данные получены: {data}")
+        print(f"📊 Найдены данные: {data.get('title', 'Название не найдено')} - {data.get('rating', 'Рейтинг не найден')}")
         
-        # Создаем менеджер Google Sheets
+        # Создаем менеджеры
         gsm = GoogleSheetsManager()
+        backup_mgr = BackupManager()
         
         # Открываем таблицу
         if not gsm.open_spreadsheet(SPREADSHEET_ID):
@@ -42,6 +40,19 @@ def update_google_sheets_with_yandex_data(url: str) -> dict:
         
         if success:
             print(f"✅ Данные успешно обновлены в Google Sheets")
+            
+            # Создаем резервную копию
+            try:
+                # Получаем все данные из Google Sheets для резервного копирования
+                all_data = gsm.get_data_as_dataframe()
+                if not all_data.empty:
+                    # Конвертируем DataFrame в список словарей
+                    data_list = all_data.to_dict('records')
+                    backup_result = backup_mgr.create_excel_backup(data_list)
+                    if backup_result:
+                        print(f"💾 Резервная копия создана: {backup_result}")
+            except Exception as e:
+                print(f"⚠️ Ошибка создания резервной копии: {e}")
         else:
             print(f"❌ Ошибка обновления данных")
         

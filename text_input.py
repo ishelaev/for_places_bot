@@ -8,13 +8,7 @@ YANDEX_URL_PATTERN = re.compile(r"(https?://yandex\.(?:ru|com)/maps/org/[^\s]+)"
 async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text.strip()
     
-    # Отладочная информация
-    print(f"Получено сообщение: '{text}'")
-    print(f"Длина сообщения: {len(text)}")
-    
     match = YANDEX_URL_PATTERN.search(text)
-    print(f"Результат поиска ссылки: {match}")
-    print(f"Регулярное выражение: {YANDEX_URL_PATTERN.pattern}")
     
     if match:
         url = match.group(1)
@@ -35,8 +29,13 @@ async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
             )
             await update.message.reply_text(response)
 
-            # Логирование: сообщаем о записи в Google Sheets
-            await update.message.reply_text("✅ Данные успешно записаны в Google Sheets")
+            # Логирование: сообщаем о записи в Google Sheets с гиперссылкой
+            google_sheets_url = "https://docs.google.com/spreadsheets/d/1w_jfZxc9yZS74-hRofIJfENd3ZqRUyE3Lh40TKVbLaI/edit#gid=0"
+            await update.message.reply_text(
+                f"✅ Данные успешно записаны в Google Sheets\n\n"
+                f"📊 <a href='{google_sheets_url}'>Открыть таблицу</a>", 
+                parse_mode='HTML'
+            )
         except Exception as e:
             await update.message.reply_text(f"Ошибка при обработке: {e}")
     else:

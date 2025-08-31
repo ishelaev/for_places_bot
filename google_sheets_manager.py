@@ -36,7 +36,7 @@ class GoogleSheetsManager:
             
             # Создаем клиент
             self.client = gspread.authorize(credentials)
-            print("✅ Подключение к Google Sheets API установлено")
+            pass
             
         except Exception as e:
             print(f"❌ Ошибка подключения к Google Sheets: {e}")
@@ -46,7 +46,7 @@ class GoogleSheetsManager:
         """Открывает таблицу по ID"""
         try:
             self.spreadsheet = self.client.open_by_key(spreadsheet_id)
-            print(f"✅ Таблица открыта: {self.spreadsheet.title}")
+            pass
             return True
         except Exception as e:
             print(f"❌ Ошибка открытия таблицы: {e}")
@@ -56,7 +56,7 @@ class GoogleSheetsManager:
         """Открывает лист в таблице"""
         try:
             self.worksheet = self.spreadsheet.worksheet(worksheet_name)
-            print(f"✅ Лист открыт: {self.worksheet.title}")
+            pass
             return True
         except Exception as e:
             print(f"❌ Ошибка открытия листа: {e}")
@@ -66,7 +66,7 @@ class GoogleSheetsManager:
         """Получает все данные из листа"""
         try:
             data = self.worksheet.get_all_values()
-            print(f"✅ Получено {len(data)} строк данных")
+            pass
             return data
         except Exception as e:
             print(f"❌ Ошибка получения данных: {e}")
@@ -84,7 +84,7 @@ class GoogleSheetsManager:
             rows = data[1:]
             
             df = pd.DataFrame(rows, columns=headers)
-            print(f"✅ DataFrame создан: {len(df)} строк, {len(df.columns)} колонок")
+            pass
             return df
             
         except Exception as e:
@@ -148,9 +148,13 @@ class GoogleSheetsManager:
                 self.worksheet.update(f'A{row_index}:{chr(65 + len(headers) - 1)}{row_index}', [update_data])
                 print(f"✅ Запись обновлена: {url}")
             else:
-                # Добавляем новую строку
-                self.worksheet.append_row(update_data)
-                print(f"✅ Запись добавлена: {url}")
+                # Добавляем новую строку в начало (после заголовка)
+                # Получаем все данные
+                all_values = self.worksheet.get_all_values()
+                
+                # Вставляем новую строку после заголовка (индекс 1)
+                self.worksheet.insert_row(update_data, 2)  # 2 = после заголовка
+                print(f"✅ Запись добавлена в начало таблицы: {url}")
             
             return True
             
