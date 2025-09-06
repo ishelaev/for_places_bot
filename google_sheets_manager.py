@@ -147,6 +147,7 @@ class GoogleSheetsManager:
                 # Обновляем существующую строку
                 self.worksheet.update(f'A{row_index}:{chr(65 + len(headers) - 1)}{row_index}', [update_data])
                 print(f"✅ Запись обновлена")
+                return {"success": True, "action": "updated"}
             else:
                 # Добавляем новую строку в начало (после заголовка)
                 # Получаем все данные
@@ -155,12 +156,11 @@ class GoogleSheetsManager:
                 # Вставляем новую строку после заголовка (индекс 1)
                 self.worksheet.insert_row(update_data, 2)  # 2 = после заголовка
                 print(f"✅ Запись добавлена в начало таблицы")
-            
-            return True
+                return {"success": True, "action": "added"}
             
         except Exception as e:
             print(f"❌ Ошибка обновления данных: {e}")
-            return False
+            return {"success": False, "action": "error", "error": str(e)}
     
     def create_worksheet_if_not_exists(self, worksheet_name: str = "places"):
         """Создает лист если его нет"""

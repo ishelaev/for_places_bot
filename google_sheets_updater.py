@@ -36,10 +36,14 @@ def update_google_sheets_with_yandex_data(url: str) -> dict:
             raise Exception("Не удалось открыть лист")
         
         # Обновляем данные
-        success = gsm.update_place_data(url, data)
+        result = gsm.update_place_data(url, data)
         
-        if success:
-            print(f"✅ Данные успешно обновлены в Google Sheets")
+        if result.get("success"):
+            action = result.get("action")
+            if action == "updated":
+                print(f"✅ Данные успешно обновлены в Google Sheets")
+            elif action == "added":
+                print(f"✅ Данные успешно добавлены в Google Sheets")
             
             # Создаем резервную копию
             try:
@@ -56,6 +60,8 @@ def update_google_sheets_with_yandex_data(url: str) -> dict:
         else:
             print(f"❌ Ошибка обновления данных")
         
+        # Добавляем информацию о действии к данным
+        data["_action"] = result.get("action", "error")
         return data
         
     except Exception as e:

@@ -29,10 +29,19 @@ async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
             )
             await update.message.reply_text(response)
 
-            # Логирование: сообщаем о записи в Google Sheets с гиперссылкой
+            # Логирование: сообщаем о записи в Google Sheets с правильным сообщением
             google_sheets_url = "https://docs.google.com/spreadsheets/d/1w_jfZxc9yZS74-hRofIJfENd3ZqRUyE3Lh40TKVbLaI/edit#gid=0"
+            
+            action = info.get("_action", "unknown")
+            if action == "updated":
+                message = "🔄 Данные заведения обновлены в Google Sheets"
+            elif action == "added":
+                message = "✅ Новое заведение добавлено в Google Sheets"
+            else:
+                message = "✅ Данные успешно записаны в Google Sheets"
+            
             await update.message.reply_text(
-                f"✅ Данные успешно записаны в Google Sheets\n\n"
+                f"{message}\n\n"
                 f"📊 <a href='{google_sheets_url}'>Открыть таблицу</a>", 
                 parse_mode='HTML'
             )
