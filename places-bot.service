@@ -1,0 +1,33 @@
+[Unit]
+Description=Places Bot - Telegram bot for parsing Yandex Maps
+Documentation=https://github.com/ishelaev/for_places_bot
+After=network.target
+Wants=network.target
+
+[Service]
+Type=simple
+User=placesbot
+Group=placesbot
+WorkingDirectory=/opt/places_bot
+Environment=PATH=/opt/places_bot/venv/bin
+ExecStart=/opt/places_bot/venv/bin/python main.py
+ExecReload=/bin/kill -HUP $MAINPID
+Restart=always
+RestartSec=10
+StandardOutput=append:/opt/places_bot/logs/bot.log
+StandardError=append:/opt/places_bot/logs/bot_error.log
+
+# Ограничения безопасности
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/places_bot
+
+# Переменные окружения
+Environment=PYTHONPATH=/opt/places_bot
+Environment=DISPLAY=:99
+Environment=CHROME_BIN=/usr/bin/google-chrome-stable
+
+[Install]
+WantedBy=multi-user.target
