@@ -56,3 +56,5 @@ check_table_structure.py
 
 # Data files (optional - uncomment if you don't want to track data)
 # data/
+google_credentials.json
+

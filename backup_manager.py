@@ -39,7 +39,6 @@ class BackupManager:
             
             # Сохраняем в Excel
             df.to_excel(filepath, index=False)
-            print(f"✅ Excel резервная копия создана: {filepath}")
             return str(filepath)
             
         except Exception as e:

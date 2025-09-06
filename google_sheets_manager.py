@@ -146,7 +146,7 @@ class GoogleSheetsManager:
             if row_index:
                 # Обновляем существующую строку
                 self.worksheet.update(f'A{row_index}:{chr(65 + len(headers) - 1)}{row_index}', [update_data])
-                print(f"✅ Запись обновлена: {url}")
+                print(f"✅ Запись обновлена")
             else:
                 # Добавляем новую строку в начало (после заголовка)
                 # Получаем все данные
@@ -154,7 +154,7 @@ class GoogleSheetsManager:
                 
                 # Вставляем новую строку после заголовка (индекс 1)
                 self.worksheet.insert_row(update_data, 2)  # 2 = после заголовка
-                print(f"✅ Запись добавлена в начало таблицы: {url}")
+                print(f"✅ Запись добавлена в начало таблицы")
             
             return True
             
@@ -168,7 +168,6 @@ class GoogleSheetsManager:
             # Проверяем существование листа
             try:
                 self.spreadsheet.worksheet(worksheet_name)
-                print(f"✅ Лист '{worksheet_name}' уже существует")
                 return True
             except gspread.WorksheetNotFound:
                 pass
