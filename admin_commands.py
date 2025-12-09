@@ -3,13 +3,11 @@ from telegram import Update
 from telegram.ext import ContextTypes
 from config import ADMIN_IDS
 from database_manager import DatabaseManager
-from instagram_parser import InstagramParser
 from logger import log_admin_action, setup_logger
 import pandas as pd
 
 logger = setup_logger()
 db_manager = DatabaseManager()
-instagram_parser = InstagramParser()
 
 def is_admin(user_id: int) -> bool:
     """Проверяет, является ли пользователь администратором"""
@@ -55,18 +53,6 @@ async def admin_stats(update: Update, context: ContextTypes.DEFAULT_TYPE):
             except:
                 pass
         
-        # Статистика по Instagram
-        instagram_stats = db_manager.get_instagram_stats()
-        instagram_info = ""
-        if instagram_stats:
-            instagram_info = (
-                f"\n📸 **Instagram статистика:**\n"
-                f"  • Всего мест: {instagram_stats.get('total_places', 0)}\n"
-                f"  • С Instagram: {instagram_stats.get('with_instagram', 0)}\n"
-                f"  • Без Instagram: {instagram_stats.get('without_instagram', 0)}\n"
-                f"  • Покрытие: {instagram_stats.get('percentage', 0)}%"
-            )
-        
         # Статистика по последним местам
         recent_places = db_manager.get_recent_places(5)
         recent_stats = ""
@@ -81,15 +67,6 @@ async def admin_stats(update: Update, context: ContextTypes.DEFAULT_TYPE):
         local_excel_exists = db_manager.local_excel_path.exists()
         sync_status = "✅ Синхронизирован" if local_excel_exists else "❌ Не синхронизирован"
         
-        # Статистика чёрного списка Instagram
-        blacklist_stats = instagram_parser.get_blacklist_stats()
-        blacklist_info = (
-            f"\n🚫 **Instagram чёрный список:**\n"
-            f"  • Всего: {blacklist_stats.get('total_count', 0)}\n"
-            f"  • Базовых: {blacklist_stats.get('base_count', 0)}\n"
-            f"  • Пользовательских: {blacklist_stats.get('custom_count', 0)}"
-        )
-        
         stats_message = (
             f"📈 **Статистика бота**\n\n"
             f"📍 Всего мест: {places_count}\n"
@@ -99,8 +76,6 @@ async def admin_stats(update: Update, context: ContextTypes.DEFAULT_TYPE):
             f"📁 Путь: `{db_manager.local_excel_path}`\n"
             f"{rating_stats}"
             f"{categories_stats}"
-            f"{instagram_info}"
-            f"{blacklist_info}"
             f"{recent_stats}"
         )
         
@@ -108,91 +83,6 @@ async def admin_stats(update: Update, context: ContextTypes.DEFAULT_TYPE):
         
     except Exception as e:
         await update.message.reply_text(f"❌ Ошибка при получении статистики: {e}")
-
-async def admin_instagram_search(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Запускает поиск Instagram для мест без Instagram"""
-    if not is_admin(update.effective_user.id):
-        await update.message.reply_text("❌ У вас нет прав администратора")
-        return
-    
-    user_id = update.effective_user.id
-    log_admin_action(user_id, "запустил поиск Instagram")
-    
-    try:
-        # Получаем места без Instagram
-        places_without_instagram = db_manager.get_places_without_instagram(limit=10)
-        
-        if not places_without_instagram:
-            await update.message.reply_text("✅ Все места уже имеют Instagram!")
-            return
-        
-        await update.message.reply_text(
-            f"🔍 Начинаю поиск Instagram для {len(places_without_instagram)} мест...\n"
-            f"Это может занять несколько минут."
-        )
-        
-        # Запускаем поиск
-        results = instagram_parser.batch_process_places(places_without_instagram, max_count=10)
-        
-        if results:
-            # Обновляем базу данных
-            updated_count = 0
-            for place_name, instagram_url in results.items():
-                if db_manager.update_instagram_for_place(place_name, instagram_url):
-                    updated_count += 1
-            
-            await update.message.reply_text(
-                f"✅ Поиск Instagram завершен!\n\n"
-                f"📊 Результаты:\n"
-                f"  • Обработано мест: {len(places_without_instagram)}\n"
-                f"  • Найдено Instagram: {len(results)}\n"
-                f"  • Обновлено в базе: {updated_count}\n\n"
-                f"📸 Найденные Instagram:\n" +
-                "\n".join([f"  • {name}: {url}" for name, url in results.items()])
-            )
-        else:
-            await update.message.reply_text(
-                "❌ Instagram не найден для обработанных мест.\n"
-                "Возможно, они добавлены в чёрный список."
-            )
-        
-    except Exception as e:
-        await update.message.reply_text(f"❌ Ошибка при поиске Instagram: {e}")
-
-async def admin_instagram_stats(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Показывает статистику по Instagram"""
-    if not is_admin(update.effective_user.id):
-        await update.message.reply_text("❌ У вас нет прав администратора")
-        return
-    
-    user_id = update.effective_user.id
-    log_admin_action(user_id, "запросил статистику Instagram")
-    
-    try:
-        instagram_stats = db_manager.get_instagram_stats()
-        blacklist_stats = instagram_parser.get_blacklist_stats()
-        
-        if not instagram_stats:
-            await update.message.reply_text("❌ Не удалось получить статистику Instagram")
-            return
-        
-        stats_message = (
-            f"📸 **Instagram статистика**\n\n"
-            f"📍 Всего мест: {instagram_stats.get('total_places', 0)}\n"
-            f"✅ С Instagram: {instagram_stats.get('with_instagram', 0)}\n"
-            f"❌ Без Instagram: {instagram_stats.get('without_instagram', 0)}\n"
-            f"📊 Покрытие: {instagram_stats.get('percentage', 0)}%\n\n"
-            f"🚫 **Чёрный список:**\n"
-            f"  • Всего записей: {blacklist_stats.get('total_count', 0)}\n"
-            f"  • Базовых: {blacklist_stats.get('base_count', 0)}\n"
-            f"  • Пользовательских: {blacklist_stats.get('custom_count', 0)}\n"
-            f"  • Файл: `{blacklist_stats.get('file_path', 'N/A')}`"
-        )
-        
-        await update.message.reply_text(stats_message, parse_mode='Markdown')
-        
-    except Exception as e:
-        await update.message.reply_text(f"❌ Ошибка при получении статистики Instagram: {e}")
 
 async def admin_sync(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Принудительная синхронизация с локальным Excel файлом"""
@@ -304,9 +194,6 @@ async def admin_help(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "/export - Экспортировать данные в CSV\n"
         "/backup - Создать резервную копию\n"
         "/help - Показать эту справку\n\n"
-        "📸 **Instagram команды**\n"
-        "/instagram_search - Поиск Instagram для мест без Instagram\n"
-        "/instagram_stats - Статистика по Instagram\n\n"
         "📝 **Обычные команды**\n"
         "/start - Запустить бота\n"
         "/status - Статус бота\n"

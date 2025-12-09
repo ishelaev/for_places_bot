@@ -5,6 +5,8 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 day_map = {
     "Mo": "Пн",
@@ -69,6 +71,8 @@ def parse_yandex_requests(url: str) -> dict:
         
         # ===== Координаты =====
         latitude = longitude = None
+        
+        # Метод 1: через атрибут data-coordinates
         el = soup.select_one('[data-coordinates]')
         if el and el.get('data-coordinates'):
             try:
@@ -78,13 +82,58 @@ def parse_yandex_requests(url: str) -> dict:
             except Exception:
                 pass
         
-        # fallback через regex на странице
+        # Метод 2: через regex на странице (data-coordinates)
         if latitude is None or longitude is None:
             m = re.search(r'data-coordinates="([\-0-9\.]+),([\-0-9\.]+)"', response.text)
             if m:
                 try:
                     longitude = float(m.group(1))
                     latitude = float(m.group(2))
+                except Exception:
+                    pass
+        
+        # Метод 3: через JSON данные на странице (координаты в структурированных данных)
+        if latitude is None or longitude is None:
+            # Ищем JSON с координатами в тексте страницы
+            json_patterns = [
+                r'"coordinates":\s*\[([\-0-9\.]+),\s*([\-0-9\.]+)\]',
+                r'"lat":\s*([\-0-9\.]+).*?"lon":\s*([\-0-9\.]+)',
+                r'"lon":\s*([\-0-9\.]+).*?"lat":\s*([\-0-9\.]+)',
+                r'latitude["\']?\s*[:=]\s*([\-0-9\.]+).*?longitude["\']?\s*[:=]\s*([\-0-9\.]+)',
+                r'longitude["\']?\s*[:=]\s*([\-0-9\.]+).*?latitude["\']?\s*[:=]\s*([\-0-9\.]+)',
+            ]
+            for pattern in json_patterns:
+                m = re.search(pattern, response.text, re.IGNORECASE | re.DOTALL)
+                if m:
+                    try:
+                        if 'lat' in pattern.lower() or 'latitude' in pattern.lower():
+                            latitude = float(m.group(1))
+                            longitude = float(m.group(2))
+                        else:
+                            longitude = float(m.group(1))
+                            latitude = float(m.group(2))
+                        break
+                    except Exception:
+                        continue
+        
+        # Метод 4: через URL параметры (если есть в URL)
+        if latitude is None or longitude is None:
+            m = re.search(r'[?&]ll=([\-0-9\.]+),([\-0-9\.]+)', url)
+            if m:
+                try:
+                    longitude = float(m.group(1))
+                    latitude = float(m.group(2))
+                except Exception:
+                    pass
+        
+        # Метод 5: через meta теги с геокоординатами
+        if latitude is None or longitude is None:
+            geo_lat = soup.select_one('meta[property="place:location:latitude"]')
+            geo_lon = soup.select_one('meta[property="place:location:longitude"]')
+            if geo_lat and geo_lon:
+                try:
+                    latitude = float(geo_lat.get('content', ''))
+                    longitude = float(geo_lon.get('content', ''))
                 except Exception:
                     pass
         
@@ -145,7 +194,7 @@ def parse_yandex_selenium(url: str) -> dict:
     
     # Имитируем человеческое поведение
     driver.get(url)
-    time.sleep(random.uniform(3, 6))  # случайная задержка 3-6 сек
+    time.sleep(2)  # Минимальная задержка для загрузки страницы
 
     # ===== Название =====
     title = None
@@ -223,6 +272,7 @@ def parse_yandex_selenium(url: str) -> dict:
         if parts:
             categories = ", ".join(parts)
 
+
     driver.quit()
     
     result = {
@@ -247,6 +297,7 @@ def parse_yandex(url: str) -> dict:
     
     if result is not None:
         print("✅ Requests сработал!")
+        # Не парсим тексты отзывов - они не нужны для основной информации
         return result
     
     print("🔄 Requests не сработал, пробую Selenium...")
