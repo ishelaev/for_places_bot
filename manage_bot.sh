@@ -74,7 +74,7 @@ status_bot() {
     sudo systemctl status $SERVICE_NAME --no-pager
     echo ""
     print_status "Использование памяти:"
-    ps aux | grep "[p]ython.*main.py" | awk '{print $2, $4, $6}' | head -1 | while read pid mem_percent mem_kb; do
+    ps aux | grep "[p]ython.*server_bot.py" | awk '{print $2, $4, $6}' | head -1 | while read pid mem_percent mem_kb; do
         mem_mb=$((mem_kb / 1024))
         echo "PID: $pid, Memory: ${mem_percent}% (${mem_mb}MB)"
     done

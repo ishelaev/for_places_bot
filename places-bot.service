@@ -10,7 +10,7 @@ User=placesbot
 Group=placesbot
 WorkingDirectory=/opt/places_bot
 Environment=PATH=/opt/places_bot/venv/bin
-ExecStart=/opt/places_bot/venv/bin/python main.py
+ExecStart=/opt/places_bot/venv/bin/python server_bot.py
 ExecReload=/bin/kill -HUP $MAINPID
 Restart=always
 RestartSec=10

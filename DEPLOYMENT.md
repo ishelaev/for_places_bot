@@ -190,7 +190,7 @@ PARSING_TIMEOUT=30
 ### Расположение файлов
 ```
 /opt/places_bot/
-├── main.py                 # Главный файл бота
+├── server_bot.py           # Главный файл бота
 ├── requirements.txt        # Python зависимости
 ├── .env                   # Конфигурация
 ├── service-account-key.json # Google API ключ
