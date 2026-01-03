@@ -5,10 +5,6 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 
 day_map = {
     "Mo": "Пн",
@@ -326,14 +322,15 @@ def parse_yandex(url: str) -> dict:
     1. Сначала пробует быстрый requests
     2. Если не работает - использует Selenium
     """
-    print("🔄 Пробую быстрый метод (requests)...")
+    import logging
+    logger = logging.getLogger('ParserBot')
+    
+    logger.debug("🔄 Пробую быстрый метод (requests)...")
     result = parse_yandex_requests(url)
     
     if result is not None:
-        print("✅ Requests сработал!")
-        # Не парсим отзывы через Selenium - это очень медленно
-        # Если нужны отзывы, можно добавить опционально позже
+        logger.debug("✅ Requests сработал!")
         return result
     
-    print("🔄 Requests не сработал, пробую Selenium...")
+    logger.debug("🔄 Requests не сработал, пробую Selenium...")
     return parse_yandex_selenium(url)
