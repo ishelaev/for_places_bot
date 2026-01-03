@@ -23,6 +23,25 @@ class InstagramParser:
         # Загружаем чёрный список
         self.blacklist = self.load_blacklist()
     
+    def _transliterate(self, text: str) -> str:
+        """Простая транслитерация кириллицы в латиницу"""
+        translit_map = {
+            'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd', 'е': 'e', 'ё': 'yo',
+            'ж': 'zh', 'з': 'z', 'и': 'i', 'й': 'y', 'к': 'k', 'л': 'l', 'м': 'm',
+            'н': 'n', 'о': 'o', 'п': 'p', 'р': 'r', 'с': 's', 'т': 't', 'у': 'u',
+            'ф': 'f', 'х': 'h', 'ц': 'ts', 'ч': 'ch', 'ш': 'sh', 'щ': 'sch',
+            'ъ': '', 'ы': 'y', 'ь': '', 'э': 'e', 'ю': 'yu', 'я': 'ya',
+            'А': 'A', 'Б': 'B', 'В': 'V', 'Г': 'G', 'Д': 'D', 'Е': 'E', 'Ё': 'Yo',
+            'Ж': 'Zh', 'З': 'Z', 'И': 'I', 'Й': 'Y', 'К': 'K', 'Л': 'L', 'М': 'M',
+            'Н': 'N', 'О': 'O', 'П': 'P', 'Р': 'R', 'С': 'S', 'Т': 'T', 'У': 'U',
+            'Ф': 'F', 'Х': 'H', 'Ц': 'Ts', 'Ч': 'Ch', 'Ш': 'Sh', 'Щ': 'Sch',
+            'Ъ': '', 'Ы': 'Y', 'Ь': '', 'Э': 'E', 'Ю': 'Yu', 'Я': 'Ya',
+        }
+        result = ''
+        for char in text:
+            result += translit_map.get(char, char)
+        return result
+    
     def normalize_name(self, name: str) -> str:
         """Нормализует название для сравнения"""
         if not isinstance(name, str):
@@ -68,19 +87,135 @@ class InstagramParser:
         return False
     
     def find_instagram(self, name: str, city: str = None) -> Optional[str]:
-        """Ищет Instagram аккаунт для заведения"""
+        """Ищет Instagram аккаунт для заведения через несколько методов"""
         if city is None:
             city = self.city_default
-            
-        query = f"site:instagram.com {name} {city}"
         
-        try:
-            for result in search(query, num_results=5, lang="ru"):
-                if "instagram.com" in result:
-                    logger.info(f"✅ Найден Instagram для {name}: {result}")
-                    return result
-        except Exception as e:
-            logger.error(f"❌ Ошибка поиска Instagram для {name}: {e}")
+        # Пробуем разные варианты запроса
+        # Также пробуем транслитерацию названия
+        name_translit = self._transliterate(name)
+        query_variants = [
+            f"site:instagram.com {name} {city}",  # С городом
+            f"site:instagram.com {name}",  # Без города
+            f"site:instagram.com {name_translit} {city}",  # Транслитерация с городом
+            f"site:instagram.com {name_translit}",  # Транслитерация без города
+            f"{name} instagram {city}",  # Без site:
+            f"{name} instagram",  # Без города и site:
+        ]
+        import requests
+        from urllib.parse import quote_plus
+        import re
+        
+        # Пробуем каждый вариант запроса
+        for query in query_variants:
+            # Метод 1: Bing Search (менее строгий чем Google)
+            try:
+                bing_url = f"https://www.bing.com/search?q={quote_plus(query)}&count=10"
+                headers = {
+                    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+                    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+                    'Accept-Language': 'ru-RU,ru;q=0.9,en;q=0.8',
+                }
+                
+                response = requests.get(bing_url, headers=headers, timeout=10)
+                if response.status_code == 200:
+                    # Ищем ссылки в разных форматах
+                    instagram_patterns = [
+                        r'https?://(?:www\.)?instagram\.com/[^\s"<>\)]+',  # Обычный формат
+                        r'instagram\.com/[^\s"<>\)]+',  # Без протокола
+                        r'href=["\']([^"\']*instagram\.com/[^"\']+)["\']',  # В атрибуте href
+                    ]
+                    for pattern in instagram_patterns:
+                        matches = re.findall(pattern, response.text)
+                        for match in matches:
+                            # Если это группа из regex, берем первую
+                            if isinstance(match, tuple):
+                                match = match[0] if match[0] else match[1] if len(match) > 1 else ''
+                            if not match:
+                                continue
+                            # Добавляем протокол, если его нет
+                            if match.startswith('instagram.com'):
+                                match = 'https://www.' + match
+                            elif match.startswith('//'):
+                                match = 'https:' + match
+                            if '/p/' not in match and '/reel/' not in match and '/stories/' not in match:
+                                logger.info(f"✅ Найден Instagram через Bing для {name}: {match}")
+                                return match
+            except Exception as e:
+                logger.debug(f"Bing не сработал для {name} (запрос: {query}): {e}")
+            
+            # Метод 2: Yandex Search
+            try:
+                yandex_url = f"https://yandex.ru/search/?text={quote_plus(query)}"
+                headers = {
+                    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+                    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+                    'Accept-Language': 'ru-RU,ru;q=0.9',
+                }
+                
+                response = requests.get(yandex_url, headers=headers, timeout=10)
+                if response.status_code == 200:
+                    # Ищем ссылки в разных форматах
+                    instagram_patterns = [
+                        r'https?://(?:www\.)?instagram\.com/[^\s"<>\)]+',
+                        r'instagram\.com/[^\s"<>\)]+',
+                        r'href=["\']([^"\']*instagram\.com/[^"\']+)["\']',
+                    ]
+                    for pattern in instagram_patterns:
+                        matches = re.findall(pattern, response.text)
+                        for match in matches:
+                            if isinstance(match, tuple):
+                                match = match[0] if match[0] else match[1] if len(match) > 1 else ''
+                            if not match:
+                                continue
+                            if match.startswith('instagram.com'):
+                                match = 'https://www.' + match
+                            elif match.startswith('//'):
+                                match = 'https:' + match
+                            if '/p/' not in match and '/reel/' not in match and '/stories/' not in match:
+                                logger.info(f"✅ Найден Instagram через Yandex для {name}: {match}")
+                                return match
+            except Exception as e:
+                logger.debug(f"Yandex не сработал для {name} (запрос: {query}): {e}")
+            
+            # Метод 3: DuckDuckGo (менее строгий к автоматизации)
+            try:
+                ddg_url = f"https://html.duckduckgo.com/html/?q={quote_plus(query)}"
+                headers = {
+                    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+                    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+                }
+                
+                response = requests.get(ddg_url, headers=headers, timeout=10)
+                if response.status_code == 200:
+                    instagram_pattern = r'https?://(?:www\.)?instagram\.com/[^\s"<>]+'
+                    matches = re.findall(instagram_pattern, response.text)
+                    for match in matches:
+                        if '/p/' not in match and '/reel/' not in match and '/stories/' not in match:
+                            logger.info(f"✅ Найден Instagram через DuckDuckGo для {name}: {match}")
+                            return match
+            except Exception as e:
+                logger.debug(f"DuckDuckGo не сработал для {name} (запрос: {query}): {e}")
+            
+            # Метод 4: Google Search (основной метод, как в оригинале) - только для первого варианта запроса
+            if query == query_variants[0]:  # Только для основного запроса
+                try:
+                    # Простой поиск как в оригинальной рабочей версии
+                    for result in search(query, num_results=5, lang='ru'):
+                        if "instagram.com" in result:
+                            if '/p/' not in result and '/reel/' not in result:
+                                logger.info(f"✅ Найден Instagram через Google для {name}: {result}")
+                                return result
+                except Exception as e:
+                    error_str = str(e)
+                    # Если это блокировка Google, логируем предупреждение
+                    if "429" in error_str or "Too Many Requests" in error_str:
+                        logger.warning(f"⚠️ Google временно блокирует запросы для {name}")
+                    else:
+                        logger.error(f"❌ Ошибка поиска Instagram через Google для {name}: {e}")
+            
+            # Небольшая задержка между вариантами запросов
+            time.sleep(0.5)
         
         return None
     

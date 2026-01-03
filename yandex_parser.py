@@ -7,6 +7,8 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 day_map = {
     "Mo": "Пн",
@@ -71,8 +73,6 @@ def parse_yandex_requests(url: str) -> dict:
         
         # ===== Координаты =====
         latitude = longitude = None
-        
-        # Метод 1: через атрибут data-coordinates
         el = soup.select_one('[data-coordinates]')
         if el and el.get('data-coordinates'):
             try:
@@ -82,7 +82,7 @@ def parse_yandex_requests(url: str) -> dict:
             except Exception:
                 pass
         
-        # Метод 2: через regex на странице (data-coordinates)
+        # fallback через regex на странице
         if latitude is None or longitude is None:
             m = re.search(r'data-coordinates="([\-0-9\.]+),([\-0-9\.]+)"', response.text)
             if m:
@@ -92,63 +92,50 @@ def parse_yandex_requests(url: str) -> dict:
                 except Exception:
                     pass
         
-        # Метод 3: через JSON данные на странице (координаты в структурированных данных)
-        if latitude is None or longitude is None:
-            # Ищем JSON с координатами в тексте страницы
-            json_patterns = [
-                r'"coordinates":\s*\[([\-0-9\.]+),\s*([\-0-9\.]+)\]',
-                r'"lat":\s*([\-0-9\.]+).*?"lon":\s*([\-0-9\.]+)',
-                r'"lon":\s*([\-0-9\.]+).*?"lat":\s*([\-0-9\.]+)',
-                r'latitude["\']?\s*[:=]\s*([\-0-9\.]+).*?longitude["\']?\s*[:=]\s*([\-0-9\.]+)',
-                r'longitude["\']?\s*[:=]\s*([\-0-9\.]+).*?latitude["\']?\s*[:=]\s*([\-0-9\.]+)',
-            ]
-            for pattern in json_patterns:
-                m = re.search(pattern, response.text, re.IGNORECASE | re.DOTALL)
-                if m:
-                    try:
-                        if 'lat' in pattern.lower() or 'latitude' in pattern.lower():
-                            latitude = float(m.group(1))
-                            longitude = float(m.group(2))
-                        else:
-                            longitude = float(m.group(1))
-                            latitude = float(m.group(2))
-                        break
-                    except Exception:
-                        continue
-        
-        # Метод 4: через URL параметры (если есть в URL)
-        if latitude is None or longitude is None:
-            m = re.search(r'[?&]ll=([\-0-9\.]+),([\-0-9\.]+)', url)
-            if m:
-                try:
-                    longitude = float(m.group(1))
-                    latitude = float(m.group(2))
-                except Exception:
-                    pass
-        
-        # Метод 5: через meta теги с геокоординатами
-        if latitude is None or longitude is None:
-            geo_lat = soup.select_one('meta[property="place:location:latitude"]')
-            geo_lon = soup.select_one('meta[property="place:location:longitude"]')
-            if geo_lat and geo_lon:
-                try:
-                    latitude = float(geo_lat.get('content', ''))
-                    longitude = float(geo_lon.get('content', ''))
-                except Exception:
-                    pass
-        
         # ===== Часы работы =====
         hours = {}
-        hours_tags = soup.select("meta[itemprop='openingHours']")
+        hours_tags = soup.select('meta[itemprop="openingHours"]')
         for tag in hours_tags:
             content = tag.get("content")
             if not content:
                 continue
-            match = re.match(r"([A-Za-z]{2}) (.+)", content)
-            if match:
-                eng_day, time_range = match.groups()
-                ru_day = day_map.get(eng_day, eng_day)
-                hours[ru_day] = time_range
+            # Формат может быть: "Mo-Fr 09:00-18:00" или "Mo 09:00-18:00, Tu 09:00-18:00"
+            parts = content.split()
+            if len(parts) >= 2:
+                day_code_raw = parts[0]
+                time_range = " ".join(parts[1:])
+                # Обрабатываем диапазоны дней (Mo-Fr) и отдельные дни
+                day_chunks = [c.strip() for c in re.split(r"[,\s]+", day_code_raw) if c.strip()]
+                for chunk in day_chunks:
+                    if "-" in chunk:
+                        # Диапазон дней (Mo-Fr)
+                        start, end = chunk.split("-", 1)
+                        day_order = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"]
+                        try:
+                            start_idx = day_order.index(start)
+                            end_idx = day_order.index(end)
+                            if start_idx <= end_idx:
+                                for i in range(start_idx, end_idx + 1):
+                                    ru_day = day_map.get(day_order[i])
+                                    if ru_day:
+                                        hours[ru_day] = time_range
+                            else:
+                                # Переход через неделю
+                                for i in range(start_idx, len(day_order)):
+                                    ru_day = day_map.get(day_order[i])
+                                    if ru_day:
+                                        hours[ru_day] = time_range
+                                for i in range(0, end_idx + 1):
+                                    ru_day = day_map.get(day_order[i])
+                                    if ru_day:
+                                        hours[ru_day] = time_range
+                        except ValueError:
+                            pass
+                    else:
+                        # Один день
+                        ru_day = day_map.get(chunk)
+                        if ru_day:
+                            hours[ru_day] = time_range
         
         # ===== Категории =====
         categories = None
@@ -194,7 +181,7 @@ def parse_yandex_selenium(url: str) -> dict:
     
     # Имитируем человеческое поведение
     driver.get(url)
-    time.sleep(2)  # Минимальная задержка для загрузки страницы
+    time.sleep(2)  # Уменьшена задержка до 2 секунд
 
     # ===== Название =====
     title = None
@@ -253,16 +240,64 @@ def parse_yandex_selenium(url: str) -> dict:
 
     # ===== Часы работы =====
     hours = {}
-    hours_tags = soup.select("meta[itemprop='openingHours']")
+    
+    # Сначала пробуем через meta теги
+    hours_tags = soup.select('meta[itemprop="openingHours"]')
     for tag in hours_tags:
         content = tag.get("content")
         if not content:
             continue
-        match = re.match(r"([A-Za-z]{2}) (.+)", content)
-        if match:
-            eng_day, time_range = match.groups()
-            ru_day = day_map.get(eng_day, eng_day)
-            hours[ru_day] = time_range
+        # Формат может быть: "Mo-Fr 09:00-18:00" или "Mo 09:00-18:00, Tu 09:00-18:00"
+        parts = content.split()
+        if len(parts) >= 2:
+            day_code_raw = parts[0]
+            time_range = " ".join(parts[1:])
+            # Обрабатываем диапазоны дней (Mo-Fr) и отдельные дни
+            day_chunks = [c.strip() for c in re.split(r"[,\s]+", day_code_raw) if c.strip()]
+            for chunk in day_chunks:
+                if "-" in chunk:
+                    # Диапазон дней (Mo-Fr)
+                    start, end = chunk.split("-", 1)
+                    day_order = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"]
+                    try:
+                        start_idx = day_order.index(start)
+                        end_idx = day_order.index(end)
+                        if start_idx <= end_idx:
+                            for i in range(start_idx, end_idx + 1):
+                                ru_day = day_map.get(day_order[i])
+                                if ru_day:
+                                    hours[ru_day] = time_range
+                        else:
+                            # Переход через неделю
+                            for i in range(start_idx, len(day_order)):
+                                ru_day = day_map.get(day_order[i])
+                                if ru_day:
+                                    hours[ru_day] = time_range
+                            for i in range(0, end_idx + 1):
+                                ru_day = day_map.get(day_order[i])
+                                if ru_day:
+                                    hours[ru_day] = time_range
+                    except ValueError:
+                        pass
+                else:
+                    # Один день
+                    ru_day = day_map.get(chunk)
+                    if ru_day:
+                        hours[ru_day] = time_range
+    
+    # Если не нашли через meta, пробуем через элементы на странице (только для Selenium)
+    if not hours and 'driver' in locals():
+        try:
+            # Ищем элементы с часами работы
+            hours_elements = driver.find_elements(By.CSS_SELECTOR, '[class*="hours"], [class*="schedule"], [class*="working"]')
+            for el in hours_elements:
+                text = el.text.strip()
+                # Ищем паттерн: день недели и время
+                matches = re.findall(r'(Пн|Вт|Ср|Чт|Пт|Сб|Вс)[^:]*:?\s*(\d{1,2}:\d{2}\s*[-–]\s*\d{1,2}:\d{2})', text)
+                for day_ru, time_range in matches:
+                    hours[day_ru] = time_range
+        except:
+            pass
 
     # ===== Категории =====
     categories = None
@@ -271,7 +306,6 @@ def parse_yandex_selenium(url: str) -> dict:
         parts = [tag.get_text(strip=True) for tag in categories_tags if tag.get_text(strip=True)]
         if parts:
             categories = ", ".join(parts)
-
 
     driver.quit()
     
@@ -297,7 +331,8 @@ def parse_yandex(url: str) -> dict:
     
     if result is not None:
         print("✅ Requests сработал!")
-        # Не парсим тексты отзывов - они не нужны для основной информации
+        # Не парсим отзывы через Selenium - это очень медленно
+        # Если нужны отзывы, можно добавить опционально позже
         return result
     
     print("🔄 Requests не сработал, пробую Selenium...")

@@ -60,10 +60,10 @@ class DatabaseManager:
         except Exception as e:
             logger.error(f"❌ Ошибка проверки таблицы: {e}")
     
-    def update_place_data(self, url: str, data: Dict) -> Tuple[bool, str]:
+    def update_place_data(self, url: str, data: Dict) -> Tuple[bool, str, str]:
         """
         Обновляет данные места в БД (если доступна) или в локальном Excel файле
-        Возвращает (успех, сообщение)
+        Возвращает (успех, сообщение, action) где action = "обновлена" или "добавлена"
         """
         try:
             if self.use_db:
@@ -77,7 +77,7 @@ class DatabaseManager:
             # Обновляем Excel файл основного бота
             action = self._update_excel(url, data)
             
-            return True, f"✅ Запись {action} в базу данных"
+            return True, f"✅ Запись {action} в базу данных", action
             
         except Exception as e:
             error_msg = f"❌ Ошибка обновления: {e}"
@@ -86,7 +86,7 @@ class DatabaseManager:
             logger.error(traceback.format_exc())
             return False, error_msg
     
-    def _update_postgres(self, url: str, data: Dict) -> Tuple[bool, str]:
+    def _update_postgres(self, url: str, data: Dict) -> Tuple[bool, str, str]:
         """Обновляет данные в PostgreSQL"""
         # Проверяем наличие записи
         check_sql = text("SELECT \"Ссылка\" FROM places WHERE \"Ссылка\" = :url")
@@ -165,7 +165,7 @@ class DatabaseManager:
         # Также синхронизируем с Excel файлом основного бота
         self._update_excel(url, data)
         
-        return True, f"✅ Запись {action} в базу данных"
+        return True, f"✅ Запись {action} в базу данных", action
     
     def update_instagram_for_place(self, place_name: str, instagram_url: str) -> bool:
         """Обновляет Instagram ссылку для конкретного места"""
