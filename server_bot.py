@@ -45,27 +45,46 @@ from database_manager import DatabaseManager
 from yandex_parser import parse_yandex
 from admin_commands import admin_stats, admin_export, admin_backup, admin_help, admin_sync, admin_instagram_search, admin_instagram_stats, is_admin
 from logger import setup_logger, log_parsing_result, log_admin_action
+import sys
+from pathlib import Path
 
 # Настройка логирования
 logger = setup_logger()
+
+# Добавляем путь к модулю поиска Instagram
+sys.path.insert(0, str(Path(__file__).parent / "Inst"))
+try:
+    from find_instagram import find_instagram_via_google
+    INSTAGRAM_SEARCH_AVAILABLE = True
+except ImportError as e:
+    logger.warning(f"⚠️ Не удалось импортировать модуль поиска Instagram: {e}")
+    INSTAGRAM_SEARCH_AVAILABLE = False
+
 db_manager = DatabaseManager()
 
 # Регулярное выражение для ссылок Яндекс.Карт
 YANDEX_URL_PATTERN = re.compile(r"(https?://yandex\.(?:ru|com)/maps/org/[^\s]+)")
 
 def escape_markdown(text: str) -> str:
-    """Экранирует специальные символы для Markdown V2"""
+    """Экранирует специальные символы для Markdown"""
     if not text:
         return text
     
-    # В Markdown V2 нужно экранировать только определенные символы
-    # Не экранируем точки, запятые, скобки в числах и обычном тексте
-    special_chars = ['_', '*', '[', ']', '(', ')', '~', '`', '>', '#', '+', '-', '=', '|', '{', '}', '!']
+    # В Markdown нужно экранировать специальные символы
+    special_chars = ['_', '*', '[', ']', '(', ')', '~', '`', '>', '#', '+', '-', '=', '|', '{', '}', '!', '.']
     
     for char in special_chars:
         text = text.replace(char, f'\\{char}')
     
     return text
+
+def escape_markdown_url(url: str) -> str:
+    """Экранирует URL для Markdown, но сохраняет его кликабельным"""
+    if not url:
+        return url
+    # В Markdown URL нужно экранировать только некоторые символы
+    # Но лучше использовать формат [текст](url)
+    return url.replace('_', '\\_').replace('.', '\\.')
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Обработчик команды /start"""
@@ -114,10 +133,56 @@ async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
         
         try:
             # Парсим данные
-            data = parse_yandex(url)
+            loop = asyncio.get_event_loop()
+            data = await loop.run_in_executor(None, parse_yandex, url)
+            
+            # Ищем Instagram (если модуль доступен)
+            if INSTAGRAM_SEARCH_AVAILABLE:
+                try:
+                    # Используем уже распарсенные данные для поиска Instagram
+                    name = data.get('title', '')
+                    city = "Москва"
+                    categories = data.get('categories')
+                    
+                    if name and name != "Название не найдено":
+                        logger.info(f"🔍 Ищу Instagram для: {name} (категории: {categories})")
+                        from functools import partial
+                        # Используем verbose=False, чтобы не засорять логи бота
+                        try:
+                            instagram_url = await loop.run_in_executor(
+                                None, partial(find_instagram_via_google, name, city, categories, False)
+                            )
+                            logger.info(f"🔍 Результат поиска Instagram: {instagram_url}")
+                            if instagram_url:
+                                data['instagram'] = instagram_url
+                                logger.info(f"✅ Найден Instagram: {instagram_url}")
+                            else:
+                                data['instagram'] = None
+                                logger.warning(f"❌ Instagram не найден для: {name}")
+                        except Exception as search_error:
+                            logger.error(f"❌ Ошибка при выполнении поиска Instagram: {search_error}")
+                            import traceback
+                            logger.error(traceback.format_exc())
+                            data['instagram'] = None
+                    else:
+                        data['instagram'] = None
+                        logger.warning(f"⚠️ Не могу искать Instagram: название не найдено")
+                except Exception as e:
+                    logger.error(f"❌ Ошибка при поиске Instagram: {e}")
+                    import traceback
+                    logger.error(traceback.format_exc())
+                    data['instagram'] = None
+            else:
+                logger.warning("⚠️ Модуль поиска Instagram недоступен")
+                data['instagram'] = None
+            
+            # Логируем финальное значение Instagram перед сохранением
+            logger.info(f"📊 Instagram перед сохранением: {data.get('instagram', 'не указан')}")
             
             # Обновляем PostgreSQL базу данных
-            success, message, action = db_manager.update_place_data(url, data)
+            success, message, action = await loop.run_in_executor(
+                None, db_manager.update_place_data, url, data
+            )
             
             if success:
                 # Логируем успешный результат
@@ -144,26 +209,61 @@ async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     coordinates = f"({coordinates[0]}, {coordinates[1]})"
                 categories = data.get('categories', 'N/A')
                 
-                # Если ссылка уже есть - отправляем только короткое сообщение
+                # Если ссылка уже есть - отправляем сообщение, но Instagram все равно обновлен
                 if is_existing:
-                    await update.message.reply_text("⚠️ **Такая ссылка уже есть в базе данных!**", parse_mode='Markdown')
+                    from html import escape as html_escape
+                    instagram_info = ""
+                    if data.get('instagram'):
+                        instagram_url = data.get('instagram')
+                        instagram_info = f"\n📸 <b>Instagram обновлен:</b> <a href=\"{instagram_url}\">{html_escape(instagram_url)}</a>"
+                    await update.message.reply_text(
+                        f"⚠️ <b>Такая ссылка уже есть в базе данных!</b>{instagram_info}",
+                        parse_mode='HTML'
+                    )
                     return
                 
                 # Формируем полный ответ для новой записи
+                # Используем HTML для более надежного форматирования
+                from html import escape as html_escape
+                
+                title_escaped = html_escape(str(title))
+                rating_escaped = html_escape(str(rating))
+                reviews_escaped = html_escape(str(reviews))
+                coordinates_escaped = html_escape(str(coordinates))
+                categories_escaped = html_escape(str(categories))
+                
+                instagram_info = ""
+                if data.get('instagram'):
+                    instagram_url = data.get('instagram')
+                    # В HTML используем тег <a> для ссылок
+                    instagram_info = f"📸 <b>Instagram:</b> <a href=\"{instagram_url}\">{html_escape(instagram_url)}</a>\n"
+                elif data.get('instagram') is None:
+                    instagram_info = "📸 <b>Instagram:</b> не найден\n"
+                
+                # Экранируем часы работы
+                hours_text_escaped = ""
+                if hours_text:
+                    hours_lines = []
+                    for line in hours_text.split('\n'):
+                        if line.strip():
+                            hours_lines.append(html_escape(line))
+                    hours_text_escaped = "\n".join(hours_lines)
+                
                 response = (
-                    f"✅ **Данные успешно обработаны!**\n\n"
-                    f"🏷 **Название:** {title}\n"
-                    f"⭐ **Рейтинг:** {rating}\n"
-                    f"💬 **Отзывы:** {reviews}\n"
-                    f"📍 **Координаты:** {coordinates}\n"
-                    f"🏪 **Категории:** {categories}\n\n"
-                    f"🕐 **Часы работы:**\n{hours_text or '—'}\n\n"
-                    f"📊 {message}\n\n"
+                    f"✅ <b>Данные успешно обработаны!</b>\n\n"
+                    f"🏷 <b>Название:</b> {title_escaped}\n"
+                    f"⭐ <b>Рейтинг:</b> {rating_escaped}\n"
+                    f"💬 <b>Отзывы:</b> {reviews_escaped}\n"
+                    f"📍 <b>Координаты:</b> {coordinates_escaped}\n"
+                    f"🏪 <b>Категории:</b> {categories_escaped}\n"
+                    f"{instagram_info}"
+                    f"🕐 <b>Часы работы:</b>\n{hours_text_escaped or '—'}\n\n"
+                    f"📊 {html_escape(message)}\n\n"
                     f"🔄 Данные теперь доступны для основного бота!\n"
                     f"📁 Локальный Excel файл обновлен"
                 )
                 
-                await update.message.reply_text(response, parse_mode='Markdown')
+                await update.message.reply_text(response, parse_mode='HTML')
                 
             else:
                 # Логируем ошибку

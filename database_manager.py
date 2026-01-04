@@ -41,7 +41,7 @@ class DatabaseManager:
         """Создает пустой Excel файл с нужными колонками"""
         columns = [
             'Ссылка', 'Название', 'Рейтинг', 'Отзывы', 'Категории',
-            'Широта', 'Долгота', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'
+            'Широта', 'Долгота', 'instagram', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'
         ]
         df = pd.DataFrame(columns=columns)
         df.to_excel(self.excel_path, index=False)
@@ -269,6 +269,9 @@ class DatabaseManager:
             hours = data.get('hours', {})
             
             # Создаем новую строку данных
+            instagram_value = data.get('instagram')
+            logger.info(f"📊 Подготовка данных для Excel - Instagram: {instagram_value}")
+            
             new_row = {
                 'Ссылка': url,
                 'Название': data.get('title', 'Название не найдено'),
@@ -277,7 +280,7 @@ class DatabaseManager:
                 'Категории': data.get('categories'),
                 'Широта': latitude,
                 'Долгота': longitude,
-                'instagram': data.get('instagram'),
+                'instagram': instagram_value,  # Явно указываем значение
                 'Пн': hours.get('Пн'),
                 'Вт': hours.get('Вт'),
                 'Ср': hours.get('Ср'),
@@ -286,6 +289,8 @@ class DatabaseManager:
                 'Сб': hours.get('Сб'),
                 'Вс': hours.get('Вс')
             }
+            
+            logger.info(f"📊 new_row['instagram'] = {new_row.get('instagram')}")
             
             # Проверяем существование файла
             if self.excel_path.exists():
@@ -301,23 +306,42 @@ class DatabaseManager:
                         if mask.any():
                             # Обновляем существующую запись
                             idx = df[mask].index[0]
+                            # Убеждаемся, что все колонки присутствуют (включая instagram)
+                            for key in new_row.keys():
+                                if key not in df.columns:
+                                    df[key] = None
+                                    logger.info(f"➕ Добавлена колонка '{key}' в Excel")
+                            # Обновляем все значения
                             for key, value in new_row.items():
-                                if key in df.columns:
-                                    df.at[idx, key] = value
+                                df.at[idx, key] = value
+                                if key == 'instagram' and value:
+                                    logger.info(f"📸 Instagram сохранен в Excel: {value}")
                             action = "обновлена"
-                            logger.info(f"✅ Обновлена запись в Excel: {url}")
+                            logger.info(f"✅ Обновлена запись в Excel: {url}, Instagram: {new_row.get('instagram', 'не указан')}")
                         else:
                             # Добавляем новую запись
                             # Убеждаемся, что все колонки присутствуют
                             for key in new_row.keys():
                                 if key not in df.columns:
                                     df[key] = None
+                                    logger.info(f"➕ Добавлена колонка '{key}' в Excel")
+                            
+                            # Логируем Instagram перед добавлением
+                            if new_row.get('instagram'):
+                                logger.info(f"📸 Добавляю новую запись с Instagram: {new_row.get('instagram')}")
                             
                             # Добавляем новую строку
                             new_df = pd.DataFrame([new_row])
                             df = pd.concat([df, new_df], ignore_index=True)
                             action = "добавлена"
-                            logger.info(f"✅ Добавлена новая запись в Excel: {url}")
+                            instagram_info = f", Instagram: {new_row.get('instagram', 'не указан')}" if new_row.get('instagram') else ""
+                            logger.info(f"✅ Добавлена новая запись в Excel: {url}{instagram_info}")
+                            
+                            # Проверяем, что Instagram действительно сохранен
+                            last_idx = len(df) - 1
+                            saved_instagram = df.loc[last_idx, 'instagram']
+                            if new_row.get('instagram'):
+                                logger.info(f"🔍 Проверка сохранения Instagram: ожидалось {new_row.get('instagram')}, сохранено {saved_instagram}")
                     else:
                         # Если нет колонки 'Ссылка', создаем новый DataFrame
                         logger.warning("⚠️ В Excel файле нет колонки 'Ссылка', создаю новую структуру")
