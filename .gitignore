@@ -1,60 +1,29 @@
+# Логи
+*.log
+logs/
+
+# Секреты
+.env
+*.env
+service-account-key.json
+
 # Python
 __pycache__/
-*.py[cod]
-*$py.class
-*.so
+*.pyc
+*.pyo
+*.pyd
 .Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-MANIFEST
 
-# Virtual environments
+# Виртуальное окружение
 venv/
+.venv/
 env/
-ENV/
-env.bak/
-venv.bak/
+
+# Данные и бэкапы
+data/
+backups/
 
 # IDE
-.vscode/
 .idea/
+.vscode/
 *.swp
-*.swo
-*~
-
-# OS
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
-
-# Logs
-logs/
-*.log
-
-# Temporary files
-*.tmp
-*.temp
-config_old.py
-check_table_structure.py
-
-# Data files (optional - uncomment if you don't want to track data)
-# data/
-google_credentials.json
-

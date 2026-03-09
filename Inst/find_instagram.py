@@ -7,6 +7,7 @@
 import re
 import time
 import sys
+import random
 from pathlib import Path
 from typing import Optional
 from urllib.parse import quote_plus
@@ -20,6 +21,16 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+
+# Список User-Agent для ротации
+USER_AGENTS = [
+    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+    'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.2 Safari/605.1.15',
+    'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:121.0) Gecko/20100101 Firefox/121.0',
+    'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36',
+]
 
 
 def get_venue_type_keyword(categories: Optional[str]) -> str:
@@ -89,19 +100,52 @@ def find_instagram_via_google(name: str, city: str = "Москва", categories:
         options.add_argument('--no-sandbox')
         options.add_argument('--disable-dev-shm-usage')
         options.add_argument('--disable-blink-features=AutomationControlled')
-        options.add_argument('--user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36')
+        
+        # Ротация User-Agent для обхода блокировок
+        user_agent = random.choice(USER_AGENTS)
+        options.add_argument(f'--user-agent={user_agent}')
+        
+        # Дополнительные опции для обхода детекции
+        options.add_argument('--disable-gpu')
+        options.add_argument('--disable-software-rasterizer')
+        options.add_argument('--disable-extensions')
+        options.add_experimental_option("excludeSwitches", ["enable-automation"])
+        options.add_experimental_option('useAutomationExtension', False)
         
         driver = webdriver.Chrome(options=options)
+        
+        # Скрываем признаки автоматизации
+        driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
         
         # Ищем в Google
         google_url = f"https://www.google.com/search?q={quote_plus(query)}&hl=ru"
         if verbose:
             print(f"🌐 Открываю Google: {google_url}")
+        
         driver.get(google_url)
-        time.sleep(3)  # Ждем загрузки результатов
+        
+        # Случайная задержка для имитации человеческого поведения (3-6 секунд)
+        wait_time = random.uniform(3, 6)
+        time.sleep(wait_time)
+        
+        # Проверяем на капчу
+        page_source = driver.page_source
+        if 'captcha' in page_source.lower() or 'recaptcha' in page_source.lower() or 'unusual traffic' in page_source.lower():
+            if verbose:
+                print("⚠️ Обнаружена капча или блокировка Google")
+            driver.quit()
+            return None
         
         # Парсим результаты поиска
         page_source = driver.page_source
+        
+        # Проверяем на капчу еще раз после загрузки
+        if 'captcha' in page_source.lower() or 'recaptcha' in page_source.lower() or 'unusual traffic' in page_source.lower() or 'sorry' in page_source.lower():
+            if verbose:
+                print("⚠️ Обнаружена капча или блокировка Google в содержимом страницы")
+            driver.quit()
+            return None
+        
         soup = BeautifulSoup(page_source, 'html.parser')
         
         # Ищем все ссылки на Instagram в результатах поиска
@@ -252,3 +296,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
